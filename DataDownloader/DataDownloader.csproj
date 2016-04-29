@@ -68,12 +68,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="UIMap.cs">
-      <DependentUpon>UIMap.uitest</DependentUpon>
-    </Compile>
-    <Compile Include="UIMap.Designer.cs">
-      <DependentUpon>UIMap.uitest</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePass\KeePass.csproj">
@@ -87,7 +81,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="UIMap.uitest" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
