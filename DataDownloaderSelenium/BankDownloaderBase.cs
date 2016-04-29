@@ -1,11 +1,12 @@
-using System;
-using DataDownloaderSelenium.Properties;
+using DataDownloader.Properties;
 using KeePass;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
-namespace DataDownloaderSelenium
+namespace DataDownloader
 {
     public abstract class BankDownloaderBase
     {
@@ -18,6 +19,8 @@ namespace DataDownloaderSelenium
         {
             KeePass = KeePassWrapper.OpenWithPassword(Settings.Default.KeePass_Path, Settings.Default.KeePass_MasterPassword);
             Browser = new ChromeDriver(@"webdriver");
+            //Browser = new FirefoxDriver();
+            //Browser = new InternetExplorerDriver();
             Browser.Navigate().GoToUrl(Url);
 
             Login();

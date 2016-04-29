@@ -2,12 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Remoting.Channels;
-using DataDownloaderSelenium.Properties;
 using OpenQA.Selenium;
 using Cookie = System.Net.Cookie;
 
-namespace DataDownloaderSelenium.Selenium
+namespace DataDownloader.Selenium
 {
     public class SeleniumFileDownloader
     {
@@ -41,43 +39,75 @@ namespace DataDownloaderSelenium.Selenium
             return cookies;
         }
 
-        public string DownloadFile(IWebElement element)
+        public string DownloadFile(IWebElement element, bool fileDatePrefix = true, string fileOtherPrefix = null)
         {
-            return Download(element, "href");
+            return Download(element, "href", fileDatePrefix, fileOtherPrefix);
         }
 
-        public string DownloadImage(IWebElement element)
+        public string DownloadImage(IWebElement element, bool fileDatePrefix = true, string fileOtherPrefix = null)
         {
-            return Download(element, "src");
+            return Download(element, "src", fileDatePrefix, fileOtherPrefix);
         }
 
-        public string Download(IWebElement element, string attribute)
+        public string DownloadCurrentPageSource(string fileName, bool fileDatePrefix = true,
+            string fileOtherPrefix = null)
+        {
+            return WriteFile(fileName, _driver.PageSource, fileDatePrefix, fileOtherPrefix);
+        }
+
+        public string Download(IWebElement element, string attribute, bool fileDatePrefix = true,
+            string fileOtherPrefix = null)
         {
             //Assuming that getAttribute does some magic to return a fully qualified URL
-            return Download(element.GetAttribute(attribute));
+            return Download(element.GetAttribute(attribute), fileDatePrefix, fileOtherPrefix);
         }
 
-        public string Download(string url)
+        public string Download(string url, bool fileDatePrefix = true, string fileOtherPrefix = null)
         {
             if (url.Trim().Equals(string.Empty))
             {
                 throw new Exception("The element you have specified does not link to anything!");
             }
-            var webClient = new WebClientWithCookies(ExtractCookiesFromDriver());
-            //webClient.DownloadFileCompleted += (sender, args) => { };
-            var bytes = webClient.DownloadData(url);
-            string fileName = null;
-            if (!String.IsNullOrEmpty(webClient.ResponseHeaders["Content-Disposition"]))
+            using (var webClient = new WebClientWithCookies(ExtractCookiesFromDriver()))
             {
-                var raw = webClient.ResponseHeaders["Content-Disposition"];
-                fileName = raw.Substring(raw.IndexOf("filename=", StringComparison.Ordinal)+9);
-                fileName = Path.GetInvalidFileNameChars().Aggregate(fileName, (current, invalidFileNameChar) => current.Replace(invalidFileNameChar.ToString(), string.Empty));
-                fileName = fileName.Replace(";", "");
+                //webClient.DownloadFileCompleted += (sender, args) => { };
+                var bytes = webClient.DownloadData(url);
+                string fileName = null;
+                if (!string.IsNullOrEmpty(webClient.ResponseHeaders["Content-Disposition"]))
+                {
+                    var raw = webClient.ResponseHeaders["Content-Disposition"];
+                    fileName = raw.Substring(raw.IndexOf("filename=", StringComparison.Ordinal) + 9);
+                    fileName = Path.GetInvalidFileNameChars()
+                        .Aggregate(fileName,
+                            (current, invalidFileNameChar) =>
+                                current.Replace(invalidFileNameChar.ToString(), string.Empty));
+                    fileName = fileName.Replace(";", "");
+                }
+                return WriteFile(fileName, bytes);
             }
-            fileName = fileName ?? DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
+        }
+
+        private string WriteFile(string fileName, byte[] bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
+        {
+            fileName = PrepareFileName(fileName, fileDatePrefix, fileOtherPrefix);
+
             Directory.CreateDirectory(DownloadPath);
             File.WriteAllBytes(Path.Combine(DownloadPath, fileName), bytes);
             return Path.Combine(DownloadPath, fileName);
+        }
+
+        private string WriteFile(string fileName, string bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
+        {
+            fileName = PrepareFileName(fileName, fileDatePrefix, fileOtherPrefix);
+
+            Directory.CreateDirectory(DownloadPath);
+            File.WriteAllText(Path.Combine(DownloadPath, fileName), bytes);
+            return Path.Combine(DownloadPath, fileName);
+        }
+
+        private string PrepareFileName(string fileName, bool fileDatePrefix = true, string fileOtherPrefix = null)
+        {
+            return $"{(fileDatePrefix ? DateTime.Now.ToString("yyyy-MM-dd_HHmmss_") : "")}{(fileOtherPrefix != null ? fileOtherPrefix + "_" : "")}{fileName}";
         }
     }
 

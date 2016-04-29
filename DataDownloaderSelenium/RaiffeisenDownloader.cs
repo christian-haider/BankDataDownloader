@@ -1,17 +1,15 @@
-﻿
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using DataDownloaderSelenium.Properties;
-using DataDownloaderSelenium.Selenium;
+using DataDownloader.Properties;
+using DataDownloader.Selenium;
 using KeePass;
-
+using KeePassLib.Delegates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-
-namespace DataDownloaderSelenium
+namespace DataDownloader
 {
     [TestClass]
     public class RaiffeisenDownloader : BankDownloaderBase
@@ -49,18 +47,6 @@ namespace DataDownloaderSelenium
             Browser.FindElement(new ByAll(By.ClassName("button"), By.ClassName("logoutlink"))).Click();
         }
 
-        protected void NavigateGiro()
-        {
-            Browser.FindElement(
-                new ByChained(
-                    By.ClassName("kontoTable"),
-                    By.TagName("tbody"),
-                    By.XPath("tr[1]"),
-                    By.XPath("td[1]"),
-                    By.TagName("a")
-                    )).Click();
-        }
-
         protected void SetMaxDateRange()
         {
             Browser.FindElement(By.Id("kontoauswahlSelectionToggleLink")).Click();
@@ -81,7 +67,7 @@ namespace DataDownloaderSelenium
                 new ByAll(By.ClassName("button"), By.ClassName("button-colored")))).Click();
         }
 
-        protected void DownloadCsv()
+        protected void DownloadCsv(string filePrefix = null)
         {
             //*[@id="j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm"]/div[3]/div[1]/div/a
             Browser.FindElement(
@@ -97,19 +83,39 @@ namespace DataDownloaderSelenium
                     new ByChained(By.ClassName("formFooterRight"),
                     new ByAll(By.ClassName("button"), By.ClassName("button-colored"))));
             var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen));
-            downloader.DownloadFile(link);
+            downloader.DownloadFile(link,fileOtherPrefix:filePrefix);
+        }
+
+        protected void NavigateHome()
+        {
+            Browser.FindElement(new ByChained(By.Id("nav"), By.TagName("ul"), By.TagName("li"), By.TagName("a"))).Click();
+        }
+
+        protected ReadOnlyCollection<IWebElement> GetAccountLinks()
+        {
+            return Browser.FindElements(
+                new ByChained(
+                    By.ClassName("kontoTable"),
+                    By.TagName("tbody"),
+                    By.TagName("tr"),
+                    By.XPath("td[1]"),
+                    By.TagName("a")
+                    ));
         }
 
         [TestMethod]
-        public void CodedUITestMethod1()
+        public void DownloadMaxDateRangeCsvForAllAccounts()
         {
-            NavigateGiro();
-            SetMaxDateRange();
-            DownloadCsv();
-
-            //id 
-            //class float left 
-            //class cal-month-year
+            var allAccountLinks = GetAccountLinks();
+            for (int i = 0; i < allAccountLinks.Count; i++)
+            {
+                allAccountLinks = GetAccountLinks();
+                var accountNumber = allAccountLinks[i].Text;
+                allAccountLinks[i].Click();
+                SetMaxDateRange();
+                DownloadCsv(accountNumber);
+                NavigateHome();
+            }
         }
     }
 }

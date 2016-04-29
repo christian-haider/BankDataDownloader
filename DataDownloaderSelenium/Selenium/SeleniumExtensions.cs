@@ -1,7 +1,6 @@
-﻿using DataDownloaderSelenium.Selenium;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace DataDownloaderSelenium.Selenium
+namespace DataDownloader.Selenium
 {
     public static class SeleniumExtensions
     {

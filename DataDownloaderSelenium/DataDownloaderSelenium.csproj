@@ -6,8 +6,8 @@
     <ProjectGuid>{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataDownloaderSelenium</RootNamespace>
-    <AssemblyName>DataDownloaderSelenium</AssemblyName>
+    <RootNamespace>DataDownloader</RootNamespace>
+    <AssemblyName>DataDownloader</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -71,9 +71,11 @@
     </Compile>
     <Compile Include="RaiffeisenDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SantanderDownloader.cs" />
     <Compile Include="Selenium\SeleniumExtensions.cs" />
     <Compile Include="Selenium\ByAllDisjunctive.cs" />
     <Compile Include="Selenium\SeleniumFileDownloader.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePass\KeePass.csproj">
