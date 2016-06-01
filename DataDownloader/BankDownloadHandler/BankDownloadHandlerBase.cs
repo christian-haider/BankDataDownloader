@@ -3,12 +3,10 @@ using KeePass;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 
-namespace DataDownloader
+namespace DataDownloader.BankDownloadHandler
 {
-    public abstract class BankDownloaderBase
+    public abstract class BankDownloadHandlerBase
     {
         protected IWebDriver Browser;
         protected KeePassWrapper KeePass;
@@ -36,5 +34,8 @@ namespace DataDownloader
 
         protected abstract void Login();
         protected abstract void Logout();
+        protected abstract void NavigateHome();
+
+        public abstract void DownloadAllData();
     }
 }

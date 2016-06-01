@@ -83,7 +83,7 @@ namespace DataDownloader.Selenium
                                 current.Replace(invalidFileNameChar.ToString(), string.Empty));
                     fileName = fileName.Replace(";", "");
                 }
-                return WriteFile(fileName, bytes);
+                return WriteFile(fileName, bytes, fileDatePrefix, fileOtherPrefix);
             }
         }
 

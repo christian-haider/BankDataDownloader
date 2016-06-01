@@ -63,19 +63,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BankDownloaderBase.cs" />
+    <Compile Include="BankDownloadHandler\BankDownloadHandlerBase.cs" />
+    <Compile Include="BankDownloadHandler\DkbDownloadHandler.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
-      <DependentUpon>Settings.settings</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RaiffeisenDownloader.cs" />
+    <Compile Include="BankDownloadHandler\RaiffeisenDownloadHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SantanderDownloader.cs" />
+    <Compile Include="BankDownloadHandler\SantanderDownloadHandler.cs" />
     <Compile Include="Selenium\SeleniumExtensions.cs" />
     <Compile Include="Selenium\ByAllDisjunctive.cs" />
     <Compile Include="Selenium\SeleniumFileDownloader.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KeePass\KeePass.csproj">
@@ -84,7 +84,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

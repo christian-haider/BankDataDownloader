@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePass", "KeePass\KeePass.csproj", "{41291EA0-0ADC-4288-8137-3864F473A961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloaderSelenium", "DataDownloaderSelenium\DataDownloaderSelenium.csproj", "{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloader", "DataDownloader\DataDownloader.csproj", "{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

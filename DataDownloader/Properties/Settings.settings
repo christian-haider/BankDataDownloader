@@ -23,5 +23,11 @@
     <Setting Name="KeePass_Entry_Uuid_Santander" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DataDownloader_Subfolder_Dkb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DKB</Value>
+    </Setting>
+    <Setting Name="KeePass_Entry_Uuid_Dkb" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

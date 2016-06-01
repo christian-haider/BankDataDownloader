@@ -3,18 +3,17 @@ using System.IO;
 using DataDownloader.Properties;
 using DataDownloader.Selenium;
 using KeePass;
-using KeePassLib.Delegates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace DataDownloader
+namespace DataDownloader.BankDownloadHandler
 {
     [TestClass]
-    public class RaiffeisenDownloader : BankDownloaderBase
+    public class RaiffeisenDownloadHandler : BankDownloadHandlerBase
     {
-        static RaiffeisenDownloader()
+        static RaiffeisenDownloadHandler()
         {
             Url = "https://banking.raiffeisen.at";
         }
@@ -47,7 +46,31 @@ namespace DataDownloader
             Browser.FindElement(new ByAll(By.ClassName("button"), By.ClassName("logoutlink"))).Click();
         }
 
-        protected void SetMaxDateRange()
+        protected override void NavigateHome()
+        {
+            Browser.FindElement(new ByChained(By.Id("nav"), By.TagName("ul"), By.TagName("li"), By.TagName("a"))).Click();
+        }
+
+        private void DownloadCsv(string filePrefix = null)
+        {
+            //*[@id="j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm"]/div[3]/div[1]/div/a
+            Browser.FindElement(
+                new ByChained(By.ClassName("serviceButtonArea"),
+                    new ByAll(By.ClassName("formControlButton"), By.ClassName("print")))).Click();
+
+            var combo = new SelectElement(Browser.FindElement(
+                new ByChained(By.ClassName("mainInput"), By.ClassName("inputLarge"))));
+            combo.SelectByValue("CSV");
+
+            var link =
+                Browser.FindElement(
+                    new ByChained(By.ClassName("formFooterRight"),
+                    new ByAll(By.ClassName("button"), By.ClassName("button-colored"))));
+            var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen));
+            downloader.DownloadFile(link, fileOtherPrefix: filePrefix);
+        }
+
+        private void SetMaxDateRange()
         {
             Browser.FindElement(By.Id("kontoauswahlSelectionToggleLink")).Click();
 
@@ -67,31 +90,7 @@ namespace DataDownloader
                 new ByAll(By.ClassName("button"), By.ClassName("button-colored")))).Click();
         }
 
-        protected void DownloadCsv(string filePrefix = null)
-        {
-            //*[@id="j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm"]/div[3]/div[1]/div/a
-            Browser.FindElement(
-                new ByChained(By.ClassName("serviceButtonArea"),
-                    new ByAll(By.ClassName("formControlButton"), By.ClassName("print")))).Click();
-
-            var combo = new SelectElement(Browser.FindElement(
-                new ByChained(By.ClassName("mainInput"), By.ClassName("inputLarge"))));
-            combo.SelectByValue("CSV");
-
-            var link =
-                Browser.FindElement(
-                    new ByChained(By.ClassName("formFooterRight"),
-                    new ByAll(By.ClassName("button"), By.ClassName("button-colored"))));
-            var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen));
-            downloader.DownloadFile(link,fileOtherPrefix:filePrefix);
-        }
-
-        protected void NavigateHome()
-        {
-            Browser.FindElement(new ByChained(By.Id("nav"), By.TagName("ul"), By.TagName("li"), By.TagName("a"))).Click();
-        }
-
-        protected ReadOnlyCollection<IWebElement> GetAccountLinks()
+        private ReadOnlyCollection<IWebElement> GetAccountLinks()
         {
             return Browser.FindElements(
                 new ByChained(
@@ -104,7 +103,7 @@ namespace DataDownloader
         }
 
         [TestMethod]
-        public void DownloadMaxDateRangeCsvForAllAccounts()
+        public override void DownloadAllData()
         {
             var allAccountLinks = GetAccountLinks();
             for (int i = 0; i < allAccountLinks.Count; i++)
