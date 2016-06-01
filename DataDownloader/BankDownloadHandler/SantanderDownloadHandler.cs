@@ -13,10 +13,10 @@ namespace DataDownloader.BankDownloadHandler
     [TestClass]
     public class SantanderDownloadHandler : BankDownloadHandlerBase
     {
-        static SantanderDownloadHandler()
+        public SantanderDownloadHandler() : base("https://service.santanderconsumer.at/eva/")
         {
-            Url = "https://service.santanderconsumer.at/eva/";
         }
+
         protected override void Login()
         {
             var entry = KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Santander);

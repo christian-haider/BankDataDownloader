@@ -13,9 +13,8 @@ namespace DataDownloader.BankDownloadHandler
     [TestClass]
     public class RaiffeisenDownloadHandler : BankDownloadHandlerBase
     {
-        static RaiffeisenDownloadHandler()
+        public RaiffeisenDownloadHandler() : base("https://banking.raiffeisen.at")
         {
-            Url = "https://banking.raiffeisen.at";
         }
 
         protected override void Login()

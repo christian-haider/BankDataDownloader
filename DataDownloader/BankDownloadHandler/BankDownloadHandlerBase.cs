@@ -10,13 +10,19 @@ namespace DataDownloader.BankDownloadHandler
     {
         protected IWebDriver Browser;
         protected KeePassWrapper KeePass;
-        protected static string Url;
+        protected string Url;
+
+        internal BankDownloadHandlerBase(string url)
+        {
+            Url = url;
+        }
 
         [TestInitialize]
         public void TestInitialize()
         {
             KeePass = KeePassWrapper.OpenWithPassword(Settings.Default.KeePass_Path, Settings.Default.KeePass_MasterPassword);
             Browser = new ChromeDriver(@"webdriver");
+            Browser.Manage().Window.Maximize();
             //Browser = new FirefoxDriver();
             //Browser = new InternetExplorerDriver();
             Browser.Navigate().GoToUrl(Url);

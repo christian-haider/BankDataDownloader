@@ -8,5 +8,10 @@ namespace DataDownloader.Selenium
         {
             return new ByAllDisjunctive(by, otherBy);
         }
+
+        public static IWebElement GetParent(this IWebElement node)
+        {
+            return node.FindElement(By.XPath(".."));
+        }
     }
 }
