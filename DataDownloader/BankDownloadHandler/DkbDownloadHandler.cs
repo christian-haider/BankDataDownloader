@@ -15,9 +15,8 @@ namespace DataDownloader.BankDownloadHandler
     [TestClass]
     public class DkbDownloadHandler : BankDownloadHandlerBase
     {
-        private SeleniumFileDownloader _fileDownloader;
-
-        public DkbDownloadHandler() : base("https://www.dkb.de/banking")
+        public DkbDownloadHandler() : base("https://www.dkb.de/banking", Path.Combine(Settings.Default.DataDownloader_Path,
+                Settings.Default.DataDownloader_Subfolder_Dkb))
         {
         }
 
@@ -45,13 +44,13 @@ namespace DataDownloader.BankDownloadHandler
             NavigateHome();
             GetAccountTransactions()[0].Click();
             SetMaxDateRange("[id*=transactionDate]", "[id*=toTransactionDate]");
-            _fileDownloader.DownloadFile(Browser.FindElement(By.ClassName("evt-csvExport")),fileOtherPrefix:"Giro");
+            FileDownloader.DownloadFile(Browser.FindElement(By.ClassName("evt-csvExport")), fileOtherPrefix: "Giro");
 
             //credit card
             NavigateHome();
             GetAccountTransactions()[1].Click();
             SetMaxDateRange("[id*=postingDate]", "[id*=toPostingDate]");
-            _fileDownloader.DownloadFile(Browser.FindElement(By.ClassName("evt-csvExport")),fileOtherPrefix:"Visa");
+            FileDownloader.DownloadFile(Browser.FindElement(By.ClassName("evt-csvExport")), fileOtherPrefix: "Visa");
         }
 
         private List<IWebElement> GetAccountTransactions()
@@ -87,7 +86,7 @@ namespace DataDownloader.BankDownloadHandler
 
                 foreach (var fileLink in Browser.FindElements(By.ClassName("iconSpeichern0")))
                 {
-                    _fileDownloader.DownloadFile(fileLink, fileDatePrefix: false);
+                    FileDownloader.DownloadFile(fileLink, fileDatePrefix: false);
                 }
             }
         }
@@ -105,9 +104,6 @@ namespace DataDownloader.BankDownloadHandler
         [TestMethod]
         public override void DownloadAllData()
         {
-            _fileDownloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path,
-                Settings.Default.DataDownloader_Subfolder_Dkb));
-
             DownloadTransactions();
 
             DownloadPdfs();

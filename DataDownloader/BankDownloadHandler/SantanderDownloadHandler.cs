@@ -13,7 +13,7 @@ namespace DataDownloader.BankDownloadHandler
     [TestClass]
     public class SantanderDownloadHandler : BankDownloadHandlerBase
     {
-        public SantanderDownloadHandler() : base("https://service.santanderconsumer.at/eva/")
+        public SantanderDownloadHandler() : base("https://service.santanderconsumer.at/eva/", Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Santander))
         {
         }
 
@@ -44,8 +44,7 @@ namespace DataDownloader.BankDownloadHandler
             SetMaxDateRange();
             Browser.FindElement(By.Id("showPrint")).Submit();
 
-            var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Santander));
-            downloader.DownloadCurrentPageSource("account.html", fileOtherPrefix: filePrefix);
+            FileDownloader.DownloadCurrentPageSource("account.html", fileOtherPrefix: filePrefix);
 
             Browser.FindElement(By.Id("printBookings")).Submit();
         }
@@ -80,7 +79,6 @@ namespace DataDownloader.BankDownloadHandler
                 }
             }
 
-            var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Santander));
 
             GetAccountSelect().SelectByIndex(1);
             //Start with idx 1 as first entry is empty
@@ -100,7 +98,7 @@ namespace DataDownloader.BankDownloadHandler
                     //download button
                     Browser.FindElement(By.Id("eServiceForm")).Submit();
                     var downloadLink = Browser.FindElement(By.LinkText("Kontoauszug downloaden"));
-                    downloader.DownloadFile(downloadLink, fileDatePrefix: false, fileOtherPrefix: filePrefix);
+                    FileDownloader.DownloadFile(downloadLink, fileDatePrefix: false, fileOtherPrefix: filePrefix);
 
                     //return to form
                     Browser.FindElement(By.XPath("//*[@id=\"esNext\"]/input")).Click();

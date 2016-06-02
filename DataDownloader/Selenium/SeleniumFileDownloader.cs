@@ -87,7 +87,7 @@ namespace DataDownloader.Selenium
             }
         }
 
-        private string WriteFile(string fileName, byte[] bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
+        public string WriteFile(string fileName, byte[] bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
         {
             fileName = PrepareFileName(fileName, fileDatePrefix, fileOtherPrefix);
 
@@ -96,7 +96,7 @@ namespace DataDownloader.Selenium
             return Path.Combine(DownloadPath, fileName);
         }
 
-        private string WriteFile(string fileName, string bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
+        public string WriteFile(string fileName, string bytes, bool fileDatePrefix = true, string fileOtherPrefix = null)
         {
             fileName = PrepareFileName(fileName, fileDatePrefix, fileOtherPrefix);
 

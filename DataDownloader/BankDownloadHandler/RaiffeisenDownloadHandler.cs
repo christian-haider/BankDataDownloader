@@ -13,7 +13,7 @@ namespace DataDownloader.BankDownloadHandler
     [TestClass]
     public class RaiffeisenDownloadHandler : BankDownloadHandlerBase
     {
-        public RaiffeisenDownloadHandler() : base("https://banking.raiffeisen.at")
+        public RaiffeisenDownloadHandler() : base("https://banking.raiffeisen.at", Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen))
         {
         }
 
@@ -65,8 +65,7 @@ namespace DataDownloader.BankDownloadHandler
                 Browser.FindElement(
                     new ByChained(By.ClassName("formFooterRight"),
                     new ByAll(By.ClassName("button"), By.ClassName("button-colored"))));
-            var downloader = new SeleniumFileDownloader(Browser, Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen));
-            downloader.DownloadFile(link, fileOtherPrefix: filePrefix);
+            FileDownloader.DownloadFile(link, fileOtherPrefix: filePrefix);
         }
 
         private void SetMaxDateRange()

@@ -29,5 +29,11 @@
     <Setting Name="KeePass_Entry_Uuid_Dkb" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DataDownloader_Subfolder_Number26" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Number26</Value>
+    </Setting>
+    <Setting Name="KeePass_Entry_Uuid_Number26" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataDownloader</RootNamespace>
     <AssemblyName>DataDownloader</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,10 +36,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.14.2\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="KeePassLib, Version=2.30.0.15901, Culture=neutral, PublicKeyToken=a47af649847d8ce7, processorArchitecture=MSIL">
       <HintPath>..\packages\KeePassLib.2.30\lib\KeePassLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -64,7 +70,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BankDownloadHandler\BankDownloadHandlerBase.cs" />
+    <Compile Include="BankDownloadHandler\Number26DownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\DkbDownloadHandler.cs" />
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Model\N26TransactionEntry.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -87,7 +96,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
