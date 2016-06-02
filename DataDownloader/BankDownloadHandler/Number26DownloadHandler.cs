@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Dynamic;
@@ -56,24 +57,17 @@ namespace DataDownloader.BankDownloadHandler
             Browser.FindElement(new ByAll(By.TagName("button"), By.ClassName("activities"))).Click();
             Browser.WaitForJavaScript();
 
-            var transactionDictionary = new Dictionary<Guid, N26TransactionEntry>();
-            var transactionCount = 0;
-
-            while (transactionCount < GetTransactions().Count)
-            {
-                transactionCount = GetTransactions().Count;
-
-                foreach (var transactionEntry in GetTransactions().Select(element => new N26TransactionEntry(Browser.GetAllAttributes(element))))
-                {
-                    if (!transactionDictionary.ContainsKey(transactionEntry.Id))
-                    {
-                        transactionDictionary.Add(transactionEntry.Id, transactionEntry);
-                    }
-                }
-                //Scrolling not working
-                //ScrollDown();
-            }
-            var values = transactionDictionary.Values.OrderBy(entry => entry.Timestamp).ToList();
+            var entries =
+                Browser.ExecuteJavaScript<object>(
+                    "var array_values = new Array();for (var key in Backbone.activities_.attributes) { array_values.push(Backbone.activities_.attributes[key]); } return array_values;");
+            var values =
+                ((IEnumerable) entries).Cast<Dictionary<string, object>>()
+                    .Where(objects => objects.Count > 0)
+                    .Select(objects => new N26TransactionEntry(objects))
+                    .OrderBy(entry => entry.Valuta)
+                    .ThenBy(entry => entry.Confirmed)
+                    .ThenBy(entry => entry.VisibleTS)
+                    .ToList();
             using (var stringWriter = new StringWriter())
             {
                 using (var csvWriter = new CsvWriter(stringWriter, new CsvConfiguration() { Delimiter = ";" }))
@@ -122,7 +116,15 @@ namespace DataDownloader.BankDownloadHandler
                 var fileName = Path.GetFileNameWithoutExtension(file);
                 var dateTime = DateTime.ParseExact(fileName, "yyyy-M", CultureInfo.InvariantCulture);
                 var newFileName = $"{dateTime.ToString("yyyy-MM")}.pdf";
-                File.Move(file, Path.Combine(DownloadPath, newFileName));
+                var newPath = Path.Combine(DownloadPath, newFileName);
+                if (File.Exists(newPath))
+                {
+                    File.Delete(file);
+                }
+                else
+                {
+                    File.Move(file, newPath);
+                }
             }
         }
 

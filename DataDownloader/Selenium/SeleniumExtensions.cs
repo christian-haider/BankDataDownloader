@@ -27,7 +27,7 @@ namespace DataDownloader.Selenium
             return element;
         }
 
-        public static void WaitForJavaScript(this IWebDriver webDriver, int timeout = 1000)
+        public static void WaitForJavaScript(this IWebDriver webDriver, int timeout = 1500)
         {
             //var wait = new WebDriverWait(webDriver, new TimeSpan(1000));
             //wait.Until(driver => driver.ExecuteJavaScript<string>("return document.readyState").Equals("complete"));
