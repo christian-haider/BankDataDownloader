@@ -10,32 +10,32 @@
             <StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">KeePass Database Path</Label>
-                    <TextBox Width="200"></TextBox>
-                    <Button Width="30">...</Button>
+                    <TextBox Name="TextBoxDatabasePath" Width="200"></TextBox>
+                    <Button Name="ButtonDatabasePath" Width="30" Click="ButtonDatabasePath_Click">...</Button>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Raiffeisen UUID Entry</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxRaiffeisenUuid" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Raiffeisen PIN Field</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxRaiffeisenPin" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">DKB UUID Entry</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxDkbUuid" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Santander UUID Entry</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxSantanderUuid" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Santander Birthday Field</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxSantanderBirtday" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Number26 UUID Entry</Label>
-                    <TextBox Width="230"></TextBox>
+                    <TextBox Name="TextBoxNumber26Uuid" Width="230"></TextBox>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -43,27 +43,31 @@
             <StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
                     <Label Width="200">Download Path</Label>
-                    <TextBox Width="200"></TextBox>
-                    <Button Width="30">...</Button>
+                    <TextBox Name="TextBoxDownloadPath" Width="200"></TextBox>
+                    <Button Name="ButtonDownloadPath" Width="30" Click="ButtonDownloadPath_Click">...</Button>
                 </StackPanel>
                 <StackPanel  Margin="3" Orientation="Horizontal" >
-                    <Label Width="200">Subfolder Raiffeisen</Label>
-                    <TextBox Width="230"></TextBox>
+                    <Label Width="200">Raiffeisen Subfolder</Label>
+                    <TextBox  Name="TextBoxRaiffeisenSubfolder" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3"  Orientation="Horizontal" >
-                    <Label Width="200">Subfolder DKB</Label>
-                    <TextBox Width="230"></TextBox>
+                    <Label Width="200">DKB Subfolder</Label>
+                    <TextBox  Name="TextBoxDkbSubfolder" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel  Margin="3" Orientation="Horizontal" >
-                    <Label Width="200">Subfolder Santander</Label>
-                    <TextBox Width="230"></TextBox>
+                    <Label Width="200">Santander Subfolder</Label>
+                    <TextBox  Name="TextBoxSantanderSubfolder" Width="230"></TextBox>
                 </StackPanel>
                 <StackPanel Margin="3" Orientation="Horizontal" >
-                    <Label Width="200">Subfolder Number26</Label>
-                    <TextBox Width="230"></TextBox>
+                    <Label Width="200">Number26 Subfolder</Label>
+                    <TextBox  Name="TextBoxNumber26Subfolder" Width="230"></TextBox>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <Button Name="ButtonStartDownload" Margin="3" Padding="3"  HorizontalAlignment="Center">Save Settings</Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="ButtonApplySettings" Margin="3" Padding="3" Width="100" HorizontalAlignment="Center" Click="ButtonApplySettings_OnClick">Apply Settings</Button>
+            <Button Name="ButtonSaveSettings" Margin="3" Padding="3"  Width="100"  HorizontalAlignment="Center" Click="ButtonSaveSettings_Click">Save &amp; Close</Button>
+            </StackPanel>
+        
     </StackPanel>
 </Window>

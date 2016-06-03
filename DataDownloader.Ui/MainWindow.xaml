@@ -23,7 +23,7 @@
             <CheckBox Name="CheckBoxNumber26" Margin="3" IsChecked="True">Number26</CheckBox>
         </StackPanel>
         <StackPanel Margin="20,0,20,0">
-            <ProgressBar Margin="3" Padding="3" Name="ProgressBar" IsIndeterminate="True" Height="20"/>
+            <ProgressBar Margin="3" Padding="3" Name="ProgressBar" Height="20"/>
             <Button Margin="3" Padding="3" Name="ButtonStartDownload"  HorizontalAlignment="Center" Click="ButtonStartDownload_Click">Start Download</Button>
         </StackPanel>
     </StackPanel>
