@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePass", "KeePass\KeePass.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloader", "DataDownloader\DataDownloader.csproj", "{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloader.Ui", "DataDownloader.Ui\DataDownloader.Ui.csproj", "{5173EAE2-7EBA-4A89-8D47-5C7767CFB9CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloader.Common", "DataDownloader.Common\DataDownloader.Common.csproj", "{5BB997B1-B794-4442-928C-EC159FACDF25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AAC9973-59FC-4AF7-A708-1851C3BDCA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5173EAE2-7EBA-4A89-8D47-5C7767CFB9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5173EAE2-7EBA-4A89-8D47-5C7767CFB9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5173EAE2-7EBA-4A89-8D47-5C7767CFB9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5173EAE2-7EBA-4A89-8D47-5C7767CFB9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB997B1-B794-4442-928C-EC159FACDF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB997B1-B794-4442-928C-EC159FACDF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB997B1-B794-4442-928C-EC159FACDF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB997B1-B794-4442-928C-EC159FACDF25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

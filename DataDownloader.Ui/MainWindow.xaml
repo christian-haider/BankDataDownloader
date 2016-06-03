@@ -1,0 +1,30 @@
+﻿<Window x:Class="DataDownloader.Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Bank Data Downloader" Width="Auto" Height="Auto" SizeToContent="WidthAndHeight" ResizeMode="NoResize"  >
+    <StackPanel>
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+            <MenuItem Header="Settings" Margin="3">
+                <Separator/>
+                <MenuItem x:Name="MenuItemSettings" Header="Settings" Click="MenuItemSettings_Click"/>
+            </MenuItem>
+        </Menu>
+        <Label >KeePass Master-Password</Label>
+        <StackPanel Margin="20,0,0,0">
+            <PasswordBox Name="PasswordBoxKeePassMasterPassword" HorizontalAlignment="Left" Width="400" Margin="3"></PasswordBox>
+        </StackPanel>
+        <Label>Banks to Process</Label>
+        <StackPanel Margin="20,0,0,0">
+            <CheckBox Name="CheckBoxRaiffeisen" Margin="3" IsChecked="True">Raiffeisen</CheckBox>
+            <CheckBox Name="CheckBoxDkb" Margin="3" IsChecked="True">DKB</CheckBox>
+            <CheckBox Name="CheckBoxSantander" Margin="3" IsChecked="True">Santander</CheckBox>
+            <CheckBox Name="CheckBoxNumber26" Margin="3" IsChecked="True">Number26</CheckBox>
+        </StackPanel>
+        <StackPanel Margin="20,0,20,0">
+            <ProgressBar Margin="3" Padding="3" Name="ProgressBar" IsIndeterminate="True" Height="20"/>
+            <Button Margin="3" Padding="3" Name="ButtonStartDownload"  HorizontalAlignment="Center" Click="ButtonStartDownload_Click">Start Download</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

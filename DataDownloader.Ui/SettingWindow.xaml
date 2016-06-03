@@ -1,0 +1,69 @@
+﻿<Window x:Class="DataDownloader.Ui.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Bank Data Downloader Settings" Width="Auto" Height="Auto" SizeToContent="WidthAndHeight" ResizeMode="NoResize" >
+    <StackPanel>
+        <GroupBox Margin="3" Header="KeePass Settings">
+            <StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">KeePass Database Path</Label>
+                    <TextBox Width="200"></TextBox>
+                    <Button Width="30">...</Button>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Raiffeisen UUID Entry</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Raiffeisen PIN Field</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">DKB UUID Entry</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Santander UUID Entry</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Santander Birthday Field</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Number26 UUID Entry</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Margin="3" Header="Data Downloader Settings">
+            <StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Download Path</Label>
+                    <TextBox Width="200"></TextBox>
+                    <Button Width="30">...</Button>
+                </StackPanel>
+                <StackPanel  Margin="3" Orientation="Horizontal" >
+                    <Label Width="200">Subfolder Raiffeisen</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Subfolder DKB</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="3" Orientation="Horizontal" >
+                    <Label Width="200">Subfolder Santander</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3" Orientation="Horizontal" >
+                    <Label Width="200">Subfolder Number26</Label>
+                    <TextBox Width="230"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <Button Name="ButtonStartDownload" Margin="3" Padding="3"  HorizontalAlignment="Center">Save Settings</Button>
+    </StackPanel>
+</Window>
