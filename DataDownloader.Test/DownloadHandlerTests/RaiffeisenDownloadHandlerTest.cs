@@ -34,7 +34,7 @@ namespace DataDownloader.Test.DownloadHandlerTests
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestDownloadAllData()
         {
             _downloadHandler.DownloadAllData();
         }

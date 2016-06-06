@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Security;
 using DataDownloader.Common.Properties;
 using DataDownloader.Common.Settings;
@@ -55,35 +57,57 @@ namespace DataDownloader.Handler.BankDownloadHandler
             Browser.FindElement(new ByChained(By.Id("nav"), By.TagName("ul"), By.TagName("li"), By.TagName("a"))).Click();
         }
 
+        private void NavigateDepots()
+        {
+            NavigateHome();
+            Browser.FindElement(By.LinkText("Depots")).Click();
+        }
+
         protected override void Download()
         {
-            var allAccountLinks = GetAccountLinks();
-            for (int i = 0; i < allAccountLinks.Count; i++)
+            for (int i = 0; i < GetAccountLinks().Count; i++)
             {
-                allAccountLinks = GetAccountLinks();
-                var accountNumber = allAccountLinks[i].Text;
-                allAccountLinks[i].Click();
+                var accountNumber = $"konto_{GetAccountLinks()[i].Text}";
+                GetAccountLinks()[i].Click();
                 SetMaxDateRange();
+
+                Browser.FindElement(
+                new ByChained(By.ClassName("serviceButtonArea"),
+                    new ByAll(By.ClassName("formControlButton"), By.ClassName("print")))).Click();
+
                 DownloadCsv(accountNumber);
                 NavigateHome();
+            }
+
+            try
+            {
+                NavigateDepots();
+
+                for (int i = 0; i < GetAccountLinks().Count; i++)
+                {
+                    var accountNumber = $"depot_{GetAccountLinks()[i].Text.Split('/')[1].Trim()}";
+                    GetAccountLinks()[i].Click();
+
+                    Browser.FindElement(new ByChained(By.ClassName("serviceButtonArea"), By.LinkText("Daten exportieren"))).Click();
+
+                    DownloadCsv(accountNumber);
+
+                    NavigateDepots();
+                }
+            }
+            catch (NoSuchElementException)
+            {
             }
         }
 
         private void DownloadCsv(string filePrefix = null)
         {
-            //*[@id="j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm"]/div[3]/div[1]/div/a
-            Browser.FindElement(
-                new ByChained(By.ClassName("serviceButtonArea"),
-                    new ByAll(By.ClassName("formControlButton"), By.ClassName("print")))).Click();
-
-            var combo = new SelectElement(Browser.FindElement(
-                new ByChained(By.ClassName("mainInput"), By.ClassName("inputLarge"))));
+            var combo =
+                new SelectElement(Browser.FindElement(new ByChained(By.ClassName("mainInput"), By.TagName("select"))));
             combo.SelectByValue("CSV");
 
             var link =
-                Browser.FindElement(
-                    new ByChained(By.ClassName("formFooterRight"),
-                    new ByAll(By.ClassName("button"), By.ClassName("button-colored"))));
+                Browser.FindElement(By.LinkText("Datei erstellen"));
             FileDownloader.DownloadFile(link, fileOtherPrefix: filePrefix);
         }
 
@@ -91,23 +115,17 @@ namespace DataDownloader.Handler.BankDownloadHandler
         {
             Browser.FindElement(By.Id("kontoauswahlSelectionToggleLink")).Click();
 
-            var month = new SelectElement(Browser.FindElement(
-                By.Id("j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm:kontoauswahlDatumVon-month-year")
-                    .Or(new ByChained(By.Id("kontoauswahlSelectionExtended"), By.ClassName("float-left"),
-                        By.ClassName("cal-month-year")))));
+            var month = new SelectElement(Browser.FindElement(By.ClassName("cal-month-year")));
             month.SelectByIndex(0);
 
-            var day = new SelectElement(Browser.FindElement(
-                By.Id("j_id1_kontoinfo_WAR_kontoinfoportlet_INSTANCE_9k3Y_:umsaetzeForm:kontoauswahlDatumVon-day")
-                    .Or(new ByChained(By.Id("kontoauswahlSelectionExtended"), By.ClassName("float-left"),
-                        By.ClassName("cal-day")))));
+            var day = new SelectElement(Browser.FindElement(By.ClassName("cal-day")));
             day.SelectByIndex(0);
 
             Browser.FindElement(new ByChained(By.ClassName("boxFormFooter"),
                 new ByAll(By.ClassName("button"), By.ClassName("button-colored")))).Click();
         }
 
-        private ReadOnlyCollection<IWebElement> GetAccountLinks()
+        private List<IWebElement> GetAccountLinks()
         {
             return Browser.FindElements(
                 new ByChained(
@@ -116,7 +134,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
                     By.TagName("tr"),
                     By.XPath("td[1]"),
                     By.TagName("a")
-                    ));
+                    )).ToList();
         }
     }
 }
