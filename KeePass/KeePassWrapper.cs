@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security;
+using DataDownloader.Common.Helper;
 using KeePassLib;
 using KeePassLib.Interfaces;
 using KeePassLib.Keys;
@@ -17,6 +19,11 @@ namespace KeePass
         private KeePassWrapper()
         {
 
+        }
+
+        public static KeePassWrapper OpenWithPassword(string path, SecureString password)
+        {
+            return OpenWithPassword(path, password.ConvertToUnsecureString());
         }
 
         public static KeePassWrapper OpenWithPassword(string path, string password)
@@ -41,7 +48,7 @@ namespace KeePass
         /// <returns></returns>
         public PwEntry GetEntryByTitle(string title)
         {
-            
+
             return GetAllEntries().SingleOrDefault(entry => entry.GetTitle()?.Equals(title) ?? false);
         }
 
@@ -54,7 +61,7 @@ namespace KeePass
         public List<PwEntry> GetAllEntries()
         {
             return PwGroup.GetFlatEntryList(Database.RootGroup.GetFlatGroupList()).ToList();
-        } 
+        }
 
         public void Dispose()
         {

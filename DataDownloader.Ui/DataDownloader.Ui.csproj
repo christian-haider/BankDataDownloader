@@ -28,7 +28,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Bank Data Downloader</ProductName>
     <PublisherName>Stefan Haider</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -154,6 +154,10 @@
     <ProjectReference Include="..\DataDownloader.Handler\DataDownloader.Handler.csproj">
       <Project>{18abfd4b-46ac-4892-8c58-9d7053b0e13d}</Project>
       <Name>DataDownloader.Handler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KeePass\KeePass.csproj">
+      <Project>{41291ea0-0adc-4288-8137-3864f473a961}</Project>
+      <Name>KeePass</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

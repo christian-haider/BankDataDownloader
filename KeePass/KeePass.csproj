@@ -77,6 +77,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataDownloader.Common\DataDownloader.Common.csproj">
+      <Project>{5bb997b1-b794-4442-928c-ec159facdf25}</Project>
+      <Name>DataDownloader.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Security;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using DataDownloader.Common.Settings;
 using DataDownloader.Handler.BankDownloadHandler;
+using KeePass;
 
 namespace DataDownloader.Ui
 {
@@ -25,109 +29,81 @@ namespace DataDownloader.Ui
 
         private void ButtonStartDownload_Click(object sender, RoutedEventArgs e)
         {
-            RunningHandler = 0;
-            ProgressBar.IsIndeterminate = true;
-
             var password = PasswordBoxKeePassMasterPassword.SecurePassword;
-            if (CheckBoxRaiffeisen.IsChecked.HasValue && CheckBoxRaiffeisen.IsChecked.Value)
+            try
             {
-                RunningHandler++;
-                Parallel.Invoke(() => RunRaiffeisen(password));
+                using (KeePassWrapper.OpenWithPassword(SettingHandler.Default.KeePassPath, password))
+                {
+                }
+
+                RunningHandler = 0;
+                ProgressBar.IsIndeterminate = true;
+                if (CheckBoxRaiffeisen.IsChecked.HasValue && CheckBoxRaiffeisen.IsChecked.Value)
+                {
+                    RunningHandler++;
+                    RunBankDownloadHanlder(new RaiffeisenDownloadHandler(password));
+                }
+                if (CheckBoxDkb.IsChecked.HasValue && CheckBoxDkb.IsChecked.Value)
+                {
+                    RunningHandler++;
+                    RunBankDownloadHanlder(new DkbDownloadHandler(password));
+                }
+                if (CheckBoxSantander.IsChecked.HasValue && CheckBoxSantander.IsChecked.Value)
+                {
+                    RunningHandler++;
+                    RunBankDownloadHanlder(new SantanderDownloadHandler(password));
+                }
+                if (CheckBoxNumber26.IsChecked.HasValue && CheckBoxNumber26.IsChecked.Value)
+                {
+                    RunningHandler++;
+                    RunBankDownloadHanlder(new Number26DownloadHandler(password));
+                }
             }
-            if (CheckBoxDkb.IsChecked.HasValue && CheckBoxDkb.IsChecked.Value)
+            catch (Exception ex)
             {
-                RunningHandler++;
-                Parallel.Invoke(() => RunDkb(password));
-            }
-            if (CheckBoxSantander.IsChecked.HasValue && CheckBoxSantander.IsChecked.Value)
-            {
-                RunningHandler++;
-                Parallel.Invoke(() => RunSantander(password));
-            }
-            if (CheckBoxNumber26.IsChecked.HasValue && CheckBoxNumber26.IsChecked.Value)
-            {
-                RunningHandler++;
-                Parallel.Invoke(() => RunNumber26(password));
+                MessageBox.Show($"Check password:\n{ex.Message}", "KeePass error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void ReportProgress()
+        private void ReportProgress(bool isError = false)
         {
-            lock (ProgressBar)
-            {
-                ProgressBar.IsIndeterminate = false;
-                ProgressBar.Minimum = 0;
-                ProgressBar.Maximum = RunningHandler;
-                ProgressBar.Value++;
-            }
+            ProgressBar.IsIndeterminate = false;
+            ProgressBar.Minimum = 0;
+            ProgressBar.Maximum = RunningHandler;
+            ProgressBar.Value++;
         }
 
-        private void RunRaiffeisen(SecureString password)
+        private void RunBankDownloadHanlder(BankDownloadHandlerBase downloadHandler)
         {
-            using (var handler = new RaiffeisenDownloadHandler(password))
-            {
-                try
-                {
-                    handler.DownloadAllData();
-                    ReportProgress();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show($"Error occured while downloading data via {handler.GetType().Name}: {e.Message}",
-                        $"Download error {handler.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+            var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-        private void RunDkb(SecureString password)
-        {
-            using (var handler = new DkbDownloadHandler(password))
+            var task = new Task(() =>
             {
-                try
+                using (downloadHandler)
                 {
-                    handler.DownloadAllData();
-                    ReportProgress();
+                    downloadHandler.DownloadAllData();
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show($"Error occured while downloading data via {handler.GetType().Name}: {e.Message}",
-                        $"Download error {handler.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+            });
+            task.ContinueWith(t =>
+            {
+                // Update UI (and UI-related data) here: success status.
+                ReportProgress();
+            }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+            task.ContinueWith(t =>
+            {
+                AggregateException aggregateException = t.Exception;
+                aggregateException?.Handle(exception => true);
+                var msg =
+                    $"Error occured while downloading data via {downloadHandler.GetType().Name}: {aggregateException?.InnerExceptions.Select(exception => exception.Message).Aggregate("", (head, current) => $"{head}\n{current}")}";
 
-        private void RunSantander(SecureString password)
-        {
-            using (var handler = new SantanderDownloadHandler(password))
-            {
-                try
-                {
-                    handler.DownloadAllData();
-                    ReportProgress();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show($"Error occured while downloading data via {handler.GetType().Name}: {e.Message}",
-                        $"Download error {handler.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+                MessageBox.Show(msg, $"Download error {downloadHandler.GetType().Name}", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
 
-        private void RunNumber26(SecureString password)
-        {
-            using (var handler = new Number26DownloadHandler(password))
-            {
-                try
-                {
-                    handler.DownloadAllData();
-                    ReportProgress();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show($"Error occured while downloading data via {handler.GetType().Name}: {e.Message}",
-                        $"Download error {handler.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+                // Update UI (and UI-related data) here: failed status.
+                ReportProgress(true);
+            }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, context);
+
+            task.Start();
         }
     }
 }
