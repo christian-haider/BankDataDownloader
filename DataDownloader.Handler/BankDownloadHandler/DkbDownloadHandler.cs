@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using DataDownloader.Common.Properties;
+using DataDownloader.Common.Settings;
 using KeePass;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -12,20 +13,20 @@ namespace DataDownloader.Handler.BankDownloadHandler
 {
     public class DkbDownloadHandler : BankDownloadHandlerBase
     {
-        public DkbDownloadHandler(string password) : base(password, "https://www.dkb.de/banking", Path.Combine(Settings.Default.DataDownloader_Path,
-                Settings.Default.DataDownloader_Subfolder_Dkb))
+        public DkbDownloadHandler(string password) : base(password, "https://www.dkb.de/banking", Path.Combine(SettingHandler.Default.DataDownloaderPath,
+                SettingHandler.Default.DataDownloaderSubfolderDkb))
         {
         }
 
-        public DkbDownloadHandler(SecureString password) : base(password, "https://www.dkb.de/banking", Path.Combine(Settings.Default.DataDownloader_Path,
-                Settings.Default.DataDownloader_Subfolder_Dkb))
+        public DkbDownloadHandler(SecureString password) : base(password, "https://www.dkb.de/banking", Path.Combine(SettingHandler.Default.DataDownloaderPath,
+                SettingHandler.Default.DataDownloaderSubfolderDkb))
         {
         }
 
         protected override void Login()
         {
-            Browser.FindElement(By.Id("loginInputSelector")).SendKeys(KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Dkb).GetUserName());
-            Browser.FindElement(By.Id("pinInputSelector")).SendKeys(KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Dkb).GetPassword());
+            Browser.FindElement(By.Id("loginInputSelector")).SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidDkb).GetUserName());
+            Browser.FindElement(By.Id("pinInputSelector")).SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidDkb).GetPassword());
 
             Browser.FindElement(By.Id("login")).Submit();
         }

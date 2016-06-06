@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security;
 using DataDownloader.Common.Properties;
+using DataDownloader.Common.Settings;
 using DataDownloader.Handler.Selenium;
 using KeePass;
 using OpenQA.Selenium;
@@ -13,17 +14,17 @@ namespace DataDownloader.Handler.BankDownloadHandler
 
     public class RaiffeisenDownloadHandler : BankDownloadHandlerBase
     {
-        public RaiffeisenDownloadHandler(string password) : base(password, "https://banking.raiffeisen.at", Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen))
+        public RaiffeisenDownloadHandler(string password) : base(password, "https://banking.raiffeisen.at", Path.Combine(SettingHandler.Default.DataDownloaderPath, SettingHandler.Default.DataDownloaderSubfolderRaiffeisen))
         {
         }
 
-        public RaiffeisenDownloadHandler(SecureString password) : base(password, "https://banking.raiffeisen.at", Path.Combine(Settings.Default.DataDownloader_Path, Settings.Default.DataDownloader_Subfolder_Raiffeisen))
+        public RaiffeisenDownloadHandler(SecureString password) : base(password, "https://banking.raiffeisen.at", Path.Combine(SettingHandler.Default.DataDownloaderPath, SettingHandler.Default.DataDownloaderSubfolderRaiffeisen))
         {
         }
 
         protected override void Login()
         {
-            var entry = KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Raiffeisen);
+            var entry = KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidRaiffeisen);
 
             //change to username login
             Browser.FindElement(By.Id("j_id280:benutzer")).Click();

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
 using DataDownloader.Common.Properties;
-using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using DataDownloader.Common.Settings;
 
 namespace DataDownloader.Ui
 {
@@ -55,50 +55,50 @@ namespace DataDownloader.Ui
 
         private void SaveSettings()
         {
-            var settings = Settings.Default;
+            var settings = SettingHandler.Default;
 
-            settings.DataDownloader_Path = TextBoxDownloadPath.Text;
+            settings.DataDownloaderPath = TextBoxDownloadPath.Text;
 
-            settings.DataDownloader_Subfolder_Dkb = TextBoxDkbSubfolder.Text;
-            settings.DataDownloader_Subfolder_Number26 = TextBoxNumber26Subfolder.Text;
-            settings.DataDownloader_Subfolder_Raiffeisen = TextBoxRaiffeisenSubfolder.Text;
-            settings.DataDownloader_Subfolder_Santander = TextBoxSantanderSubfolder.Text;
+            settings.DataDownloaderSubfolderDkb = TextBoxDkbSubfolder.Text;
+            settings.DataDownloaderSubfolderNumber26 = TextBoxNumber26Subfolder.Text;
+            settings.DataDownloaderSubfolderRaiffeisen = TextBoxRaiffeisenSubfolder.Text;
+            settings.DataDownloaderSubfolderSantander = TextBoxSantanderSubfolder.Text;
 
-            settings.KeePass_Path = TextBoxDatabasePath.Text;
+            settings.KeePassPath = TextBoxDatabasePath.Text;
 
-            settings.KeePass_Entry_Uuid_Dkb = TextBoxDkbUuid.Text;
-            settings.KeePass_Entry_Uuid_Number26 = TextBoxNumber26Uuid.Text;
-            settings.KeePass_Entry_Uuid_Raiffeisen = TextBoxRaiffeisenUuid.Text;
-            settings.KeePass_Entry_Uuid_Santander = TextBoxSantanderUuid.Text;
+            settings.KeePassEntryUuidDkb = TextBoxDkbUuid.Text;
+            settings.KeePassEntryUuidNumber26 = TextBoxNumber26Uuid.Text;
+            settings.KeePassEntryUuidRaiffeisen = TextBoxRaiffeisenUuid.Text;
+            settings.KeePassEntryUuidSantander = TextBoxSantanderUuid.Text;
 
-            settings.KeePass_Field_Birthday_Santander = TextBoxSantanderBirtday.Text;
-            settings.KeePass_Field_Pin_Raiffeisen = TextBoxRaiffeisenPin.Text;
+            settings.KeePassFieldBirthdaySantander = TextBoxSantanderBirtday.Text;
+            settings.KeePassFieldPinRaiffeisen = TextBoxRaiffeisenPin.Text;
 
             settings.Save();
-            }
+        }
 
         private void InitDialogWithSettings()
         {
-            var settings = Settings.Default;
+            var settings = SettingHandler.Default;
 
             settings.Reload();
 
-            TextBoxDownloadPath.Text = settings.DataDownloader_Path;
+            TextBoxDownloadPath.Text = settings.DataDownloaderPath;
 
-            TextBoxDkbSubfolder.Text = settings.DataDownloader_Subfolder_Dkb;
-            TextBoxNumber26Subfolder.Text = settings.DataDownloader_Subfolder_Number26;
-            TextBoxRaiffeisenSubfolder.Text = settings.DataDownloader_Subfolder_Raiffeisen;
-            TextBoxSantanderSubfolder.Text = settings.DataDownloader_Subfolder_Santander;
+            TextBoxDkbSubfolder.Text = settings.DataDownloaderSubfolderDkb;
+            TextBoxNumber26Subfolder.Text = settings.DataDownloaderSubfolderNumber26;
+            TextBoxRaiffeisenSubfolder.Text = settings.DataDownloaderSubfolderRaiffeisen;
+            TextBoxSantanderSubfolder.Text = settings.DataDownloaderSubfolderSantander;
 
-            TextBoxDatabasePath.Text = settings.KeePass_Path;
+            TextBoxDatabasePath.Text = settings.KeePassPath;
 
-            TextBoxDkbUuid.Text = settings.KeePass_Entry_Uuid_Dkb;
-            TextBoxNumber26Uuid.Text = settings.KeePass_Entry_Uuid_Number26;
-            TextBoxRaiffeisenUuid.Text = settings.KeePass_Entry_Uuid_Raiffeisen;
-            TextBoxSantanderUuid.Text = settings.KeePass_Entry_Uuid_Santander;
+            TextBoxDkbUuid.Text = settings.KeePassEntryUuidDkb;
+            TextBoxNumber26Uuid.Text = settings.KeePassEntryUuidNumber26;
+            TextBoxRaiffeisenUuid.Text = settings.KeePassEntryUuidRaiffeisen;
+            TextBoxSantanderUuid.Text = settings.KeePassEntryUuidSantander;
 
-            TextBoxSantanderBirtday.Text = settings.KeePass_Field_Birthday_Santander;
-            TextBoxRaiffeisenPin.Text = settings.KeePass_Field_Pin_Raiffeisen;
+            TextBoxSantanderBirtday.Text = settings.KeePassFieldBirthdaySantander;
+            TextBoxRaiffeisenPin.Text = settings.KeePassFieldPinRaiffeisen;
         }
     }
 }

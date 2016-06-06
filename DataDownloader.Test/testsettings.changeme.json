@@ -1,0 +1,15 @@
+﻿{
+  "KeePassPath": "",
+  "KeePassEntryUuidRaiffeisen": "",
+  "DataDownloaderPath": "",
+  "DataDownloaderSubfolderRaiffeisen": "Raiffeisen",
+  "DataDownloaderSubfolderSantander": "Santander",
+  "KeePassEntryUuidSantander": "",
+  "DataDownloaderSubfolderDkb": "DKB",
+  "KeePassEntryUuidDkb": "",
+  "DataDownloaderSubfolderNumber26": "Number26",
+  "KeePassEntryUuidNumber26": "",
+  "KeePassFieldPinRaiffeisen": "PIN",
+  "KeePassFieldBirthdaySantander": "birthday",
+  "KeePassPassword": ""
+}

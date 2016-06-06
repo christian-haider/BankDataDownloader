@@ -73,6 +73,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings\ISettingHandler.cs" />
+    <Compile Include="Settings\SettingHandler.cs" />
+    <Compile Include="Settings\SettingHandlerImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

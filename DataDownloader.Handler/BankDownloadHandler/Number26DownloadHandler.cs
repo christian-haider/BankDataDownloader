@@ -8,6 +8,7 @@ using System.Security;
 using CsvHelper;
 using CsvHelper.Configuration;
 using DataDownloader.Common.Properties;
+using DataDownloader.Common.Settings;
 using DataDownloader.Handler.Model;
 using DataDownloader.Handler.Selenium;
 using KeePass;
@@ -20,13 +21,13 @@ namespace DataDownloader.Handler.BankDownloadHandler
     public class Number26DownloadHandler : BankDownloadHandlerBase
     {
         public Number26DownloadHandler(string password)
-            : base(password, "https://my.number26.de/", Path.Combine(Settings.Default.DataDownloader_Path,
-                Settings.Default.DataDownloader_Subfolder_Number26))
+            : base(password, "https://my.number26.de/", Path.Combine(SettingHandler.Default.DataDownloaderPath,
+                SettingHandler.Default.DataDownloaderSubfolderNumber26))
         {
         }
 
-        public Number26DownloadHandler(SecureString password) : base(password, "https://my.number26.de/", Path.Combine(Settings.Default.DataDownloader_Path,
-                Settings.Default.DataDownloader_Subfolder_Number26))
+        public Number26DownloadHandler(SecureString password) : base(password, "https://my.number26.de/", Path.Combine(SettingHandler.Default.DataDownloaderPath,
+                SettingHandler.Default.DataDownloaderSubfolderNumber26))
         {
         }
 
@@ -34,9 +35,9 @@ namespace DataDownloader.Handler.BankDownloadHandler
         {
             Browser.WaitForJavaScript();
             Browser.FindElement(By.XPath("//input[@type='email']"))
-                .SendKeys(KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Number26).GetUserName());
+                .SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidNumber26).GetUserName());
             Browser.FindElement(By.XPath("//input[@type='password']"))
-                .SendKeys(KeePass.GetEntryByUuid(Settings.Default.KeePass_Entry_Uuid_Number26).GetPassword());
+                .SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidNumber26).GetPassword());
 
             Browser.FindElement(new ByAll(By.TagName("a"), By.ClassName("login"))).Click();
         }
