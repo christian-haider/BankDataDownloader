@@ -29,7 +29,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             var entry = KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidRaiffeisen);
 
             //change to username login
-            Browser.FindElement(By.Id("j_id280:benutzer")).Click();
+            Browser.FindElement(By.Id("tab-benutzer")).Click();
 
             //type username
             Browser.FindElement(new ByIdOrName("loginform:LOGINNAME")).SendKeys(entry.GetUserName());
@@ -69,6 +69,10 @@ namespace DataDownloader.Handler.BankDownloadHandler
             {
                 var accountNumber = $"konto_{GetAccountLinks()[i].Text}";
                 GetAccountLinks()[i].Click();
+
+                Screenshot ss = ((ITakesScreenshot)Browser).GetScreenshot();
+                ss.SaveAsFile(Path.Combine(DownloadPath, $"{accountNumber}.png"), System.Drawing.Imaging.ImageFormat.Png);
+
                 SetMaxDateRange();
 
                 Browser.FindElement(

@@ -69,6 +69,9 @@ namespace DataDownloader.Handler.BankDownloadHandler
             Browser.FindElement(new ByAll(By.TagName("button"), By.ClassName("activities"))).Click();
             Browser.WaitForJavaScript();
 
+            Screenshot ss = ((ITakesScreenshot)Browser).GetScreenshot();
+            ss.SaveAsFile(Path.Combine(DownloadPath, "transactions.png"), System.Drawing.Imaging.ImageFormat.Png);
+
             var entries =
                 Browser.ExecuteJavaScript<object>(
                     "var array_values = new Array();for (var key in Backbone.activities_.attributes) { array_values.push(Backbone.activities_.attributes[key]); } return array_values;");
@@ -103,7 +106,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
         private void ScrollDown()
         {
             Browser.FindElementOnPage(By.CssSelector(".holder.activities"));
-            Browser.ExecuteJavaScript("scroll(0, 500);");
+            Browser.ExecuteJavaScript<object>("scroll(0, 500);");
             Browser.WaitForJavaScript();
         }
 

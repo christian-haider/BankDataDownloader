@@ -82,7 +82,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             var foundLink = false;
             for (int i = 1; !foundLink; i++)
             {
-                var selector = $"//*[@id=\"collapseTwo\"]/table/tbody/tr[{i}]/td[3]/a";
+                var selector = $"//*[@id=\"collapseTwo\"]/table/tbody/tr[{i}]/td[3]/b/a";
                 Browser.FindElement(By.XPath(selector)).Click();
                 try
                 {
