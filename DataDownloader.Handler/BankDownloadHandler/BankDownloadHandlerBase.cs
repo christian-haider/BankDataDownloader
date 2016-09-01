@@ -33,6 +33,11 @@ namespace DataDownloader.Handler.BankDownloadHandler
             Url = url;
             DownloadPath = downloadPath;
 
+            if (!Directory.Exists(downloadPath))
+            {
+                Directory.CreateDirectory(downloadPath);
+            }
+
             _keePassMasterPasswordSecureString = null;
             _keePassMasterPasswordString = masterPassword;
         }
