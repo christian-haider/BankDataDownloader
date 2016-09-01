@@ -1,9 +1,9 @@
 using System;
 using System.IO;
+using System.Net.Mime;
 using System.Security;
 using DataDownloader.Common.Helper;
 using DataDownloader.Common.Settings;
-using DataDownloader.Handler.Properties;
 using DataDownloader.Handler.Selenium;
 using KeePass;
 using OpenQA.Selenium;
@@ -60,16 +60,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             options.AddUserProfilePreference("profile.default_content_settings.popups", 0);
 
             //extract chromedriver from resources to 
-            var driverDirPath = Path.Combine(Path.GetTempPath(), "Selenium");
-            var driverPath = Path.Combine(driverDirPath, "chromedriver.exe");
-            if (!File.Exists(driverPath))
-            {
-                if (!Directory.Exists(driverDirPath))
-                {
-                    Directory.CreateDirectory(driverDirPath);
-                }
-                File.WriteAllBytes(driverPath, Resources.chromedriver);
-            }
+            var driverDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "drivers");
 
             Browser = new ChromeDriver(driverDirPath, options);
             Browser.Manage().Window.Maximize();
