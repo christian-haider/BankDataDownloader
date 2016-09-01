@@ -110,9 +110,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
                 new SelectElement(Browser.FindElement(new ByChained(By.ClassName("mainInput"), By.TagName("select"))));
             combo.SelectByValue("CSV");
 
-            var link =
-                Browser.FindElement(By.LinkText("Datei erstellen"));
-            FileDownloader.DownloadFile(link, fileOtherPrefix: filePrefix);
+            Browser.FindElement(By.LinkText("Datei erstellen")).Click();
         }
 
         private void SetMaxDateRange()
