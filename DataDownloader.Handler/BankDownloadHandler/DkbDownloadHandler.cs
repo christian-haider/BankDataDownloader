@@ -38,7 +38,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
 
         protected override void NavigateHome()
         {
-            Browser.FindElement(By.XPath("//*[@id=\"dkb_banking_header\"]/span[1]/a")).Click();
+            Browser.FindElement(By.ClassName("dkb_logo_container")).Click();
         }
 
         protected override void Download()

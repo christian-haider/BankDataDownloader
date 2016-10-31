@@ -80,10 +80,11 @@ namespace DataDownloader.Handler.BankDownloadHandler
             Browser.FindElement(By.XPath("//*[@id=\"main-menu\"]/li[2]/a")).Click();
             //Click on Messages until found correct message
             var foundLink = false;
-            for (int i = 1; !foundLink; i++)
+            for (int i = 0; !foundLink; i++)
             {
-                var selector = $"//*[@id=\"collapseTwo\"]/table/tbody/tr[{i}]/td[3]/b/a";
-                Browser.FindElement(By.XPath(selector)).Click();
+                var selector = By.PartialLinkText("Kontoauszug BestFlex");
+                var elements = Browser.FindElements(selector);
+                elements[i].Click();
                 try
                 {
                     Browser.FindElement(By.LinkText("Kontauszug BestFlex")).Click();

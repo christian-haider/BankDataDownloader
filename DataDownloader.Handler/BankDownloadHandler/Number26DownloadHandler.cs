@@ -45,7 +45,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
         protected override void Logout()
         {
             Browser.WaitForJavaScript();
-            Browser.FindElement(By.ClassName("logout")).Click();
+            Browser.FindElement(By.ClassName("UIHeader__logout-button")).Click();
 
             Browser.WaitForJavaScript();
             Browser.FindElement(By.CssSelector(".btn.ok")).Click();
