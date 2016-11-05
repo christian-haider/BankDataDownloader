@@ -4,6 +4,8 @@ using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 using DataDownloader.Common.Settings;
 using DataDownloader.Handler.BankDownloadHandler;
 using KeePass;
@@ -29,6 +31,21 @@ namespace DataDownloader.Ui
 
         private void ButtonStartDownload_Click(object sender, RoutedEventArgs e)
         {
+            Run();
+        }
+
+        private void PasswordBoxKeePassMasterPassword_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Run();
+            }
+        }
+
+        #region helper
+
+        private void Run()
+        {
             var password = PasswordBoxKeePassMasterPassword.SecurePassword;
             try
             {
@@ -36,8 +53,7 @@ namespace DataDownloader.Ui
                 {
                 }
 
-                RunningHandler = 0;
-                ProgressBar.IsIndeterminate = true;
+                ResetProgress();
                 if (CheckBoxRaiffeisen.IsChecked.HasValue && CheckBoxRaiffeisen.IsChecked.Value)
                 {
                     RunningHandler++;
@@ -63,6 +79,12 @@ namespace DataDownloader.Ui
             {
                 MessageBox.Show($"Check password:\n{ex.Message}", "KeePass error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ResetProgress()
+        {
+            RunningHandler = 0;
+            ProgressBar.IsIndeterminate = true;
         }
 
         private void ReportProgress(bool isError = false)
@@ -105,5 +127,6 @@ namespace DataDownloader.Ui
 
             task.Start();
         }
+        #endregion
     }
 }

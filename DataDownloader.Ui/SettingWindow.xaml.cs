@@ -19,12 +19,14 @@ namespace DataDownloader.Ui
 
         private void ButtonDatabasePath_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new System.Windows.Forms.OpenFileDialog();
-            fileDialog.Multiselect = false;
-            fileDialog.CheckFileExists = true;
-            fileDialog.AddExtension = true;
-            fileDialog.Filter = "KeePass Files|*.kdbx";
-            fileDialog.FileName = TextBoxDatabasePath.Text;
+            var fileDialog = new System.Windows.Forms.OpenFileDialog
+            {
+                Multiselect = false,
+                CheckFileExists = true,
+                AddExtension = true,
+                Filter = "KeePass Files|*.kdbx",
+                FileName = TextBoxDatabasePath.Text
+            };
 
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -34,8 +36,7 @@ namespace DataDownloader.Ui
 
         private void ButtonDownloadPath_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new FolderBrowserDialog();
-            fileDialog.SelectedPath = TextBoxDownloadPath.Text;
+            var fileDialog = new FolderBrowserDialog { SelectedPath = TextBoxDownloadPath.Text };
 
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -56,28 +57,25 @@ namespace DataDownloader.Ui
 
         private void SaveSettings()
         {
-            Task.Run(() =>
-            {
-                var settings = SettingHandler.Default;
-                settings.DataDownloaderPath = TextBoxDownloadPath.Text;
+            var settings = SettingHandler.Default;
+            settings.DataDownloaderPath = TextBoxDownloadPath.Text;
 
-                settings.DataDownloaderSubfolderDkb = TextBoxDkbSubfolder.Text;
-                settings.DataDownloaderSubfolderNumber26 = TextBoxNumber26Subfolder.Text;
-                settings.DataDownloaderSubfolderRaiffeisen = TextBoxRaiffeisenSubfolder.Text;
-                settings.DataDownloaderSubfolderSantander = TextBoxSantanderSubfolder.Text;
+            settings.DataDownloaderSubfolderDkb = TextBoxDkbSubfolder.Text;
+            settings.DataDownloaderSubfolderNumber26 = TextBoxNumber26Subfolder.Text;
+            settings.DataDownloaderSubfolderRaiffeisen = TextBoxRaiffeisenSubfolder.Text;
+            settings.DataDownloaderSubfolderSantander = TextBoxSantanderSubfolder.Text;
 
-                settings.KeePassPath = TextBoxDatabasePath.Text;
+            settings.KeePassPath = TextBoxDatabasePath.Text;
 
-                settings.KeePassEntryUuidDkb = TextBoxDkbUuid.Text;
-                settings.KeePassEntryUuidNumber26 = TextBoxNumber26Uuid.Text;
-                settings.KeePassEntryUuidRaiffeisen = TextBoxRaiffeisenUuid.Text;
-                settings.KeePassEntryUuidSantander = TextBoxSantanderUuid.Text;
+            settings.KeePassEntryUuidDkb = TextBoxDkbUuid.Text;
+            settings.KeePassEntryUuidNumber26 = TextBoxNumber26Uuid.Text;
+            settings.KeePassEntryUuidRaiffeisen = TextBoxRaiffeisenUuid.Text;
+            settings.KeePassEntryUuidSantander = TextBoxSantanderUuid.Text;
 
-                settings.KeePassFieldBirthdaySantander = TextBoxSantanderBirtday.Text;
-                settings.KeePassFieldPinRaiffeisen = TextBoxRaiffeisenPin.Text;
+            settings.KeePassFieldBirthdaySantander = TextBoxSantanderBirtday.Text;
+            settings.KeePassFieldPinRaiffeisen = TextBoxRaiffeisenPin.Text;
 
-                settings.Save();
-            });
+            settings.Save();
         }
 
         private void InitDialogWithSettings()

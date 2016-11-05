@@ -77,7 +77,7 @@
         public string KeePassFieldBirthdaySantander
         {
             get { return _baseSettingHandler.KeePass_Field_Birthday_Santander; }
-            set { _baseSettingHandler.KeePass_Entry_Uuid_Santander = value; }
+            set { _baseSettingHandler.KeePass_Field_Birthday_Santander = value; }
         }
 
         public void Save()
