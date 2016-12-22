@@ -34,9 +34,9 @@ namespace DataDownloader.Handler.BankDownloadHandler
         protected override void Login()
         {
             Browser.WaitForJavaScript();
-            Browser.FindElement(By.XPath("//input[@type='email']"))
+            Browser.FindElement(By.Name("email"))
                 .SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidNumber26).GetUserName());
-            Browser.FindElement(By.XPath("//input[@type='password']"))
+            Browser.FindElement(By.Name("password"))
                 .SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidNumber26).GetPassword());
 
             Browser.FindElement(new ByAll(By.TagName("a"), By.ClassName("login"))).Click();
