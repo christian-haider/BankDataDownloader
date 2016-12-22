@@ -89,7 +89,6 @@
     <Compile Include="BankDownloadHandler\RaiffeisenDownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\RciDownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\SantanderDownloadHandler.cs" />
-    <Compile Include="Model\N26TransactionEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\ByAllDisjunctive.cs" />
     <Compile Include="Selenium\SeleniumExtensions.cs" />

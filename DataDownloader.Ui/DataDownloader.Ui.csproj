@@ -30,7 +30,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Bank Data Downloader</ProductName>
     <PublisherName>Stefan Haider</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

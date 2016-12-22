@@ -9,7 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using DataDownloader.Common.Properties;
 using DataDownloader.Common.Settings;
-using DataDownloader.Handler.Model;
+using DataDownloader.Common.Model;
 using DataDownloader.Handler.Selenium;
 using KeePass;
 using OpenQA.Selenium;

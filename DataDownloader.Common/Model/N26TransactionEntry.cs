@@ -4,9 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using DataDownloader.Common.Helper;
 
-namespace DataDownloader.Handler.Model
+namespace DataDownloader.Common.Model
 {
     public class N26TransactionEntry
     {
@@ -86,7 +85,7 @@ namespace DataDownloader.Handler.Model
 
         private void ParseDictionary<T>(Dictionary<string, object> attributes, Expression<Func<N26TransactionEntry, T>> getPropertyLambda)
         {
-            var propertyInfo = Helper.GetPropertyFromExpression(getPropertyLambda);
+            var propertyInfo = Helper.Helper.GetPropertyFromExpression(getPropertyLambda);
 
             var key = propertyInfo.Name.ToLower();
             if (attributes.ContainsKey(key))
