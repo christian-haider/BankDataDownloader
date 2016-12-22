@@ -59,10 +59,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             options.AddUserProfilePreference("download.default_directory", DownloadPath);
             options.AddUserProfilePreference("profile.default_content_settings.popups", 0);
 
-            //extract chromedriver from resources to 
-            var driverDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "drivers");
-
-            Browser = new ChromeDriver(driverDirPath, options);
+            Browser = new ChromeDriver(options);
             Browser.Manage().Window.Maximize();
             Browser.Navigate().GoToUrl(Url);
 
