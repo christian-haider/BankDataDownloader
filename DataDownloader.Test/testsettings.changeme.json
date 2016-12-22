@@ -11,5 +11,7 @@
   "KeePassEntryUuidNumber26": "",
   "KeePassFieldPinRaiffeisen": "PIN",
   "KeePassFieldBirthdaySantander": "birthday",
-  "KeePassPassword": ""
+  "KeePassPassword": "",
+  "KeePassEntryUuidRci": "",
+  "DataDownloaderSubfolderRci": ""
 }

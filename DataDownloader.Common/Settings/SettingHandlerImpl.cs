@@ -62,6 +62,17 @@
             set { _baseSettingHandler.DataDownloader_Subfolder_Number26 = value; }
         }
 
+        public string KeePassEntryUuidRci
+        {
+            get { return _baseSettingHandler.KeePass_Entry_Uuid_Rci; }
+            set { _baseSettingHandler.KeePass_Entry_Uuid_Rci = value; }
+        }
+        public string DataDownloaderSubfolderRci
+        {
+            get { return _baseSettingHandler.DataDownloader_Subfolder_Rci; }
+            set { _baseSettingHandler.DataDownloader_Subfolder_Rci = value; }
+        }
+
         public string KeePassEntryUuidNumber26
         {
             get { return _baseSettingHandler.KeePass_Entry_Uuid_Number26; }

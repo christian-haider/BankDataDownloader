@@ -21,6 +21,8 @@ namespace DataDownloader.Test.Mock
         public string KeePassEntryUuidDkb { get; set; }
 
         public string DataDownloaderSubfolderNumber26 { get; set; }
+        public string KeePassEntryUuidRci { get; set; }
+        public string DataDownloaderSubfolderRci { get; set; }
 
         public string KeePassEntryUuidNumber26 { get; set; }
 

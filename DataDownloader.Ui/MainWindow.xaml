@@ -21,6 +21,7 @@
             <CheckBox Name="CheckBoxDkb" Margin="3" IsChecked="True">DKB</CheckBox>
             <CheckBox Name="CheckBoxSantander" Margin="3" IsChecked="True">Santander</CheckBox>
             <CheckBox Name="CheckBoxNumber26" Margin="3" IsChecked="True">Number26</CheckBox>
+            <CheckBox Name="CheckBoxRci" Margin="3" IsChecked="True">Renault Bank direkt</CheckBox>
         </StackPanel>
         <StackPanel Margin="20,0,20,0">
             <ProgressBar Margin="3" Padding="3" Name="ProgressBar" Height="20"/>

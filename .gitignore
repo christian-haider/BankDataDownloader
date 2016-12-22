@@ -247,3 +247,4 @@ ModelManifest.xml
 .fake/
 *.csproj.DotSettings
 /DataDownloader.Test/testsettings.json
+*.kdbx

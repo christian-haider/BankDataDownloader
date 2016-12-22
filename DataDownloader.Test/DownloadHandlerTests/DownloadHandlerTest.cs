@@ -68,4 +68,9 @@ namespace DataDownloader.Test.DownloadHandlerTests
     public class SantanderDownloadHandlerTest : DownloadHandlerTestBase<SantanderDownloadHandler>
     {
     }
+
+    [TestClass]
+    public class RciDownloadHandlerTest : DownloadHandlerTestBase<RciDownloadHandler>
+    {
+    }
 }

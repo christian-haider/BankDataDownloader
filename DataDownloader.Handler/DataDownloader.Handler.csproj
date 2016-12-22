@@ -87,6 +87,7 @@
     <Compile Include="BankDownloadHandler\DkbDownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\Number26DownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\RaiffeisenDownloadHandler.cs" />
+    <Compile Include="BankDownloadHandler\RciDownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\SantanderDownloadHandler.cs" />
     <Compile Include="Model\N26TransactionEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

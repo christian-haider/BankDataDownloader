@@ -74,6 +74,11 @@ namespace DataDownloader.Ui
                     RunningHandler++;
                     RunBankDownloadHanlder(new Number26DownloadHandler(password));
                 }
+                if (CheckBoxRci.IsChecked.HasValue && CheckBoxRci.IsChecked.Value)
+                {
+                    RunningHandler++;
+                    RunBankDownloadHanlder(new RciDownloadHandler(password));
+                }
             }
             catch (Exception ex)
             {

@@ -33,11 +33,6 @@ namespace DataDownloader.Handler.BankDownloadHandler
             Url = url;
             DownloadPath = downloadPath;
 
-            if (!Directory.Exists(downloadPath))
-            {
-                Directory.CreateDirectory(downloadPath);
-            }
-
             _keePassMasterPasswordSecureString = null;
             _keePassMasterPasswordString = masterPassword;
         }
@@ -53,6 +48,11 @@ namespace DataDownloader.Handler.BankDownloadHandler
 
         private void Initialize()
         {
+            if (!Directory.Exists(DownloadPath))
+            {
+                Directory.CreateDirectory(DownloadPath);
+            }
+
             KeePass = KeePassWrapper.OpenWithPassword(SettingHandler.Default.KeePassPath, KeePassMasterPassword);
 
             var options = new ChromeOptions();
@@ -88,7 +88,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             }
             catch (Exception)
             {
-
+                // ignored
             }
         }
 

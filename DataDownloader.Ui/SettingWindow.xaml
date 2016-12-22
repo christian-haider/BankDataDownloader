@@ -37,6 +37,10 @@
                     <Label Width="200">Number26 UUID Entry</Label>
                     <TextBox Name="TextBoxNumber26Uuid" Width="230"></TextBox>
                 </StackPanel>
+                <StackPanel Margin="3"  Orientation="Horizontal" >
+                    <Label Width="200">Renault Bank direkt UUID Entry</Label>
+                    <TextBox Name="TextBoxRciUuid" Width="230"></TextBox>
+                </StackPanel>
             </StackPanel>
         </GroupBox>
         <GroupBox Margin="3" Header="Data Downloader Settings">
@@ -61,6 +65,10 @@
                 <StackPanel Margin="3" Orientation="Horizontal" >
                     <Label Width="200">Number26 Subfolder</Label>
                     <TextBox  Name="TextBoxNumber26Subfolder" Width="230"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="3" Orientation="Horizontal" >
+                    <Label Width="200">>Renault Bank direkt Subfolder</Label>
+                    <TextBox  Name="TextBoxRciSubfolder" Width="230"></TextBox>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

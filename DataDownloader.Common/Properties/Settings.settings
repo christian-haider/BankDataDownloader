@@ -38,5 +38,11 @@
     <Setting Name="KeePass_Field_Birthday_Santander" Type="System.String" Scope="User">
       <Value Profile="(Default)">birthday</Value>
     </Setting>
+    <Setting Name="KeePass_Entry_Uuid_Rci" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DataDownloader_Subfolder_Rci" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RenaultBank</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

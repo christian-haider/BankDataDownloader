@@ -64,6 +64,7 @@ namespace DataDownloader.Ui
             settings.DataDownloaderSubfolderNumber26 = TextBoxNumber26Subfolder.Text;
             settings.DataDownloaderSubfolderRaiffeisen = TextBoxRaiffeisenSubfolder.Text;
             settings.DataDownloaderSubfolderSantander = TextBoxSantanderSubfolder.Text;
+            settings.DataDownloaderSubfolderRci = TextBoxRciSubfolder.Text;
 
             settings.KeePassPath = TextBoxDatabasePath.Text;
 
@@ -71,6 +72,7 @@ namespace DataDownloader.Ui
             settings.KeePassEntryUuidNumber26 = TextBoxNumber26Uuid.Text;
             settings.KeePassEntryUuidRaiffeisen = TextBoxRaiffeisenUuid.Text;
             settings.KeePassEntryUuidSantander = TextBoxSantanderUuid.Text;
+            settings.KeePassEntryUuidRci = TextBoxRciUuid.Text;
 
             settings.KeePassFieldBirthdaySantander = TextBoxSantanderBirtday.Text;
             settings.KeePassFieldPinRaiffeisen = TextBoxRaiffeisenPin.Text;
@@ -90,6 +92,7 @@ namespace DataDownloader.Ui
             TextBoxNumber26Subfolder.Text = settings.DataDownloaderSubfolderNumber26;
             TextBoxRaiffeisenSubfolder.Text = settings.DataDownloaderSubfolderRaiffeisen;
             TextBoxSantanderSubfolder.Text = settings.DataDownloaderSubfolderSantander;
+            TextBoxRciSubfolder.Text = settings.DataDownloaderSubfolderRci;
 
             TextBoxDatabasePath.Text = settings.KeePassPath;
 
@@ -97,6 +100,7 @@ namespace DataDownloader.Ui
             TextBoxNumber26Uuid.Text = settings.KeePassEntryUuidNumber26;
             TextBoxRaiffeisenUuid.Text = settings.KeePassEntryUuidRaiffeisen;
             TextBoxSantanderUuid.Text = settings.KeePassEntryUuidSantander;
+            TextBoxRciUuid.Text = settings.KeePassEntryUuidRci;
 
             TextBoxSantanderBirtday.Text = settings.KeePassFieldBirthdaySantander;
             TextBoxRaiffeisenPin.Text = settings.KeePassFieldPinRaiffeisen;
