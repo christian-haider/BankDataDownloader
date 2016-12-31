@@ -129,16 +129,23 @@ namespace DataDownloader.Handler.BankDownloadHandler
             foreach (var file in Directory.GetFiles(DownloadPath, "*.pdf"))
             {
                 var fileName = Path.GetFileNameWithoutExtension(file);
-                var dateTime = DateTime.ParseExact(fileName, "yyyy-M", CultureInfo.InvariantCulture);
-                var newFileName = $"{dateTime.ToString("yyyy-MM")}.pdf";
-                var newPath = Path.Combine(DownloadPath, newFileName);
-                if (File.Exists(newPath))
+                try
                 {
-                    File.Delete(file);
+                    var dateTime = DateTime.ParseExact(fileName, "yyyy-M", CultureInfo.InvariantCulture);
+                    var newFileName = $"{dateTime.ToString("yyyy-MM")}.pdf";
+                    var newPath = Path.Combine(DownloadPath, newFileName);
+                    if (File.Exists(newPath))
+                    {
+                        File.Delete(file);
+                    }
+                    else
+                    {
+                        File.Move(file, newPath);
+                    }
                 }
-                else
+                catch (FormatException e)
                 {
-                    File.Move(file, newPath);
+                    Log.Warn(e, "Couldn't rename balance statement pdf {0}", file);
                 }
             }
         }

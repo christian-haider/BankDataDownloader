@@ -6,6 +6,7 @@ using DataDownloader.Common.Helper;
 using DataDownloader.Common.Settings;
 using DataDownloader.Handler.Selenium;
 using KeePass;
+using NLog;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -13,8 +14,10 @@ namespace DataDownloader.Handler.BankDownloadHandler
 {
     public abstract class BankDownloadHandlerBase : IDisposable
     {
-        protected string Url;
-        protected string DownloadPath;
+        public readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        public string Url { get; }
+        public string DownloadPath { get; }
 
         protected IWebDriver Browser;
         protected KeePassWrapper KeePass;

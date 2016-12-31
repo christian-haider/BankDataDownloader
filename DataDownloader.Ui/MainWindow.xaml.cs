@@ -9,6 +9,7 @@ using System.Windows.Media;
 using DataDownloader.Common.Settings;
 using DataDownloader.Handler.BankDownloadHandler;
 using KeePass;
+using NLog;
 
 namespace DataDownloader.Ui
 {
@@ -17,6 +18,8 @@ namespace DataDownloader.Ui
     /// </summary>
     public partial class MainWindow : Window
     {
+        public readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         public int RunningHandler;
 
         public MainWindow()
@@ -108,6 +111,7 @@ namespace DataDownloader.Ui
             {
                 using (downloadHandler)
                 {
+                    Log.Info("Start downloading data from {0}", downloadHandler.Url);
                     downloadHandler.DownloadAllData();
                 }
             });
@@ -123,6 +127,7 @@ namespace DataDownloader.Ui
                 var msg =
                     $"Error occured while downloading data via {downloadHandler.GetType().Name}: {aggregateException?.InnerExceptions.Select(exception => exception.Message).Aggregate("", (head, current) => $"{head}\n{current}")}";
 
+                Log.Error(t.Exception, msg);
                 MessageBox.Show(msg, $"Download error {downloadHandler.GetType().Name}", MessageBoxButton.OK,
                     MessageBoxImage.Error);
 
