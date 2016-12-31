@@ -7,6 +7,7 @@ using DataDownloader.Handler.Selenium;
 using KeePass;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace DataDownloader.Handler.BankDownloadHandler
 {
@@ -70,13 +71,80 @@ namespace DataDownloader.Handler.BankDownloadHandler
 
             //Download
             Browser.FindElement(By.XPath("//a[@title='Download']")).Click();
+
+            var originalHandle = Browser.CurrentWindowHandle;
+            foreach (var windowHandle in Browser.WindowHandles)
+            {
+                if (!windowHandle.Equals(originalHandle))
+                {
+                    Browser.SwitchTo().Window(windowHandle);
+                    Browser.Close();
+                }
+            }
+            Browser.SwitchTo().Window(originalHandle);
+        }
+
+        private void DownloadStatements()
+        {
+            NavigateHome();
+            Browser.FindElement(By.PartialLinkText("POSTFACH")).Click();
+            Browser.FindElement(By.Name("trigger:postfachbutton::")).Click();
+
+            //switch tab
+            var originalHandle = Browser.CurrentWindowHandle;
+            string postfachHandle = null;
+            foreach (var windowHandle in Browser.WindowHandles)
+            {
+                if (!windowHandle.Equals(originalHandle))
+                {
+                    Browser.SwitchTo().Window(windowHandle);
+                    if (Browser.Title.Equals("Postfach", StringComparison.OrdinalIgnoreCase))
+                    {
+                        postfachHandle = windowHandle;
+                    }
+                    else
+                    {
+                        Browser.Close();
+                    }
+                }
+            }
+            Browser.SwitchTo().Window(postfachHandle);
+
+            foreach (var file in Directory.GetFiles(DownloadPath, "*).pdf"))
+            {
+                File.Delete(file);
+            }
+
+            var byDate = new ByChained(By.ClassName("inboxCol2"), By.TagName("a"));
+            while (Browser.FindElements(byDate).Count > 0)
+            {
+                var dateLink = Browser.FindElement(byDate);
+                var dateText = dateLink.Text;
+                var date = DateTime.Parse(dateText);
+                dateLink.Click();
+
+                var fileName = Browser.FindElement(By.ClassName("detailCol1")).Text;
+                Browser.FindElement(By.ClassName("btnDownload")).Click();
+
+                //rename file
+                var origPath = Path.Combine(DownloadPath, fileName);
+                File.Move(origPath, Path.Combine(DownloadPath, date.ToString("yyyy-MM") + Path.GetExtension(origPath)));
+
+                Browser.FindElement(By.XPath("//*[@id='deliveryActions']/input[@value='LÖSCHEN']")).Click();
+                Browser.FindElement(By.Id("ja")).Click();
+            }
+            Browser.Close();
+            Browser.SwitchTo().Window(originalHandle);
         }
 
         protected override void Download()
         {
             Browser.WaitForJavaScript(5000);
             DownloadTransactions();
-            Browser.WaitForJavaScript(2000);
+            Browser.WaitForJavaScript(5000);
+            DownloadStatements();
+            Browser.WaitForJavaScript();
+            NavigateHome();
         }
     }
 }
