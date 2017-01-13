@@ -4,7 +4,7 @@
         xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
         xmlns:controls="clr-namespace:DataDownloader.Ui.Controls"
         Title="{x:Static resx:Ui.MainWindow_Title}" MaxWidth="600" MaxHeight="400" SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize" FocusManager.FocusedElement="{Binding ElementName=PasswordBoxKeePassMasterPassword}">
+        ResizeMode="NoResize" FocusManager.FocusedElement="{Binding ElementName=PasswordBoxKeePassMasterPassword}" Icon="/Bank Data Downloader;component/icons/DataDownloader.png">
     <DockPanel>
         <Menu DockPanel.Dock="Top" TabIndex="1">
             <MenuItem Header="{x:Static resx:Ui.Main_Settings_Menu}">
@@ -19,7 +19,7 @@
         <StackPanel DockPanel.Dock="Bottom">
             <ProgressBar Margin="{DynamicResource Margin}" Name="ProgressBar" Height="20" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <controls:IconButton IconSource="/icons/Downloads.png" Text="{x:Static resx:Ui.Common_StartDownload}"
+                <controls:IconButton IconSource="/icons/Multiple Inputs_64.png" Text="{x:Static resx:Ui.Common_StartDownload}"
                                      x:Name="ButtonStartDownload" Click="ButtonStartDownload_Click" />
             </StackPanel>
         </StackPanel>

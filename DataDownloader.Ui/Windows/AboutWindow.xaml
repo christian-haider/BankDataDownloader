@@ -1,13 +1,117 @@
 ﻿<Window x:Class="DataDownloader.Ui.Windows.AboutWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataDownloader.Ui.Windows"
         xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
-        mc:Ignorable="d"
-        Title="{x:Static resx:Ui.AboutWindow_Title}" Height="300" Width="300">
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="{x:Static resx:Ui.AboutWindow_Title}" Height="400" Width="400" Icon="/Bank Data Downloader;component/icons/DataDownloader.png"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <system:Double x:Key="H1Size" >16</system:Double>
+        <system:Double x:Key="H2Size" >12</system:Double>
+        <Style TargetType="FlowDocument">
+            <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="TextAlignment" Value="Left"></Setter>
+        </Style>
+        <Style TargetType="TextElement" x:Key="H1">
+            <Setter Property="FontSize" Value="{DynamicResource H1Size}"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+        <Style TargetType="TextElement" x:Key="H2">
+            <Setter Property="FontSize" Value="{DynamicResource H2Size}"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="DarkGray"></Setter>
+        </Style>
+        <Style TargetType="Hyperlink">
+            <EventSetter Event="RequestNavigate" Handler="Hyperlink_RequestNavigate"></EventSetter>
+        </Style>
+    </Window.Resources>
     <DockPanel>
-
+        <DockPanel Margin="{DynamicResource Margin}" DockPanel.Dock="Top">
+            <Image Source="/icons/DataDownloader.png" Stretch="None" DockPanel.Dock="Left" VerticalAlignment="Top"></Image>
+            <FlowDocumentScrollViewer Margin="{DynamicResource Margin}" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+                <FlowDocument>
+                    <Paragraph Style="{DynamicResource H1}" >
+                        <Run Text="{Binding Product, Mode=OneWay}"></Run><LineBreak />
+                        <Run Text="{Binding Version, Mode=OneWay}" Style="{DynamicResource H2}"></Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="https://github.com/haidelber/BankDataDownloader"><Run Text="{x:Static resx:Ui.About_ProjectWebsite_Text}"></Run></Hyperlink>
+                    </Paragraph>
+                    <Paragraph FontWeight="Bold" >
+                        <Run Text="{Binding Copyright, Mode=OneWay}"></Run>
+                    </Paragraph>
+                    <Paragraph >
+                        <Run Text="{Binding Description, Mode=OneWay}"></Run>
+                    </Paragraph>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+        </DockPanel>
+        <FlowDocumentScrollViewer Margin="{DynamicResource Margin}" VerticalScrollBarVisibility="Auto" >
+            <FlowDocument >
+                <Paragraph Style="{DynamicResource H1}">
+                    <Run Text="{x:Static resx:Ui.About_Acknowledgements_Text}"></Run>
+                </Paragraph>
+                <Section>
+                    <Paragraph Style="{DynamicResource H2}">
+                        <Run Text="{x:Static resx:Ui.About_CodeLibAcknowledgements_Text}"></Run>
+                    </Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://csvhelper.com/">CsvHelper</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://www.newtonsoft.com/json">Json.NET</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://keepass.info">KeePass</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://nlog-project.org/">NLog</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://www.seleniumhq.org/">Selenium WebDriver</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="https://sites.google.com/a/chromium.org/chromedriver/">Selenium WebDriver ChromeDriver</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="https://github.com/jsakamoto/nupkg-selenium-webdriver-chromedriver/">Selenium WebDriver ChromeDriver - NuGet package</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://phantomjs.org/">PhantomJS</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                    </List>
+                </Section>
+                <Section>
+                    <Paragraph Style="{DynamicResource H2}">
+                        <Run Text="{x:Static resx:Ui.About_IconAcknowledgements_Text}"></Run>
+                    </Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="https://icons8.com/">Icons8</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                    </List>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
     </DockPanel>
 </Window>

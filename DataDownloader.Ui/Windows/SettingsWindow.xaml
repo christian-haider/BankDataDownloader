@@ -6,7 +6,7 @@
         Width="550"
         Height="400"
         ResizeMode="NoResize"
-        Title="{x:Static resx:Ui.SettingsWindow_Title}">
+        Title="{x:Static resx:Ui.SettingsWindow_Title}" Icon="/Bank Data Downloader;component/icons/DataDownloader.png">
     <DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
             <controls:IconButton IconSource="/icons/Ok.png" Text="{x:Static resx:Ui.Common_ApplySave}"

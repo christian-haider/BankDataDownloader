@@ -120,6 +120,18 @@
   <data name="AboutWindow_Title" xml:space="preserve">
     <value>About Bank Data Downloader</value>
   </data>
+  <data name="About_Acknowledgements_Text" xml:space="preserve">
+    <value>Acknowledgements</value>
+  </data>
+  <data name="About_CodeLibAcknowledgements_Text" xml:space="preserve">
+    <value>Code/Library Acknowledgements</value>
+  </data>
+  <data name="About_IconAcknowledgements_Text" xml:space="preserve">
+    <value>Icon Acknowledgements</value>
+  </data>
+  <data name="About_ProjectWebsite_Text" xml:space="preserve">
+    <value>Project Website</value>
+  </data>
   <data name="Bank_Dkb" xml:space="preserve">
     <value>DKB</value>
   </data>
