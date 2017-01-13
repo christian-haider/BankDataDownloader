@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Security;
-using DataDownloader.Common.Settings;
+using DataDownloader.Common.Properties;
 using DataDownloader.Handler.Selenium;
 using KeePass;
 using OpenQA.Selenium;
@@ -14,8 +14,8 @@ namespace DataDownloader.Handler.BankDownloadHandler
     public class RciDownloadHandler : BankDownloadHandlerBase
     {
         public static readonly string RciUrl = "https://ebanking.renault-bank-direkt.at";
-        public static readonly string RciDownloadPath = Path.Combine(SettingHandler.Default.DataDownloaderPath,
-            SettingHandler.Default.DataDownloaderSubfolderRci);
+        public static readonly string RciDownloadPath = Path.Combine(SettingsHandler.Instance.DataDownloaderPath,
+            SettingsHandler.Instance.DataDownloaderSubfolderRci);
 
         public RciDownloadHandler(string masterPassword) : base(masterPassword, RciUrl, RciDownloadPath)
         {
@@ -27,8 +27,8 @@ namespace DataDownloader.Handler.BankDownloadHandler
 
         protected override void Login()
         {
-            Browser.FindElement(By.Id("username")).SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidRci).GetUserName());
-            Browser.FindElement(new ByChained(By.Id("login"), By.XPath("//input[@type='password']"))).SendKeys(KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidRci).GetPassword());
+            Browser.FindElement(By.Id("username")).SendKeys(KeePass.GetEntryByUuid(SettingsHandler.Instance.KeePassEntryUuidRci).GetUserName());
+            Browser.FindElement(new ByChained(By.Id("login"), By.XPath("//input[@type='password']"))).SendKeys(KeePass.GetEntryByUuid(SettingsHandler.Instance.KeePassEntryUuidRci).GetPassword());
             Browser.FindElement(By.Id("submitButton")).Click();
         }
 

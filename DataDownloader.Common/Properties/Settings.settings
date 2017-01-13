@@ -2,47 +2,65 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataDownloader.Common.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="KeePass_Path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Dropbox\_tools\KeePass_2_DB_Stefan.kdbx</Value>
-    </Setting>
-    <Setting Name="KeePass_Entry_Uuid_Raiffeisen" Type="System.String" Scope="User">
+    <Setting Name="KeePassPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DataDownloader_Path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Y:\Bank\_download</Value>
+    <Setting Name="KeePassEntryUuidRaiffeisen" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DataDownloader_Subfolder_Raiffeisen" Type="System.String" Scope="User">
+    <Setting Name="DataDownloaderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DataDownloaderSubfolderRaiffeisen" Type="System.String" Scope="User">
       <Value Profile="(Default)">Raiffeisen</Value>
     </Setting>
-    <Setting Name="DataDownloader_Subfolder_Santander" Type="System.String" Scope="User">
+    <Setting Name="DataDownloaderSubfolderSantander" Type="System.String" Scope="User">
       <Value Profile="(Default)">Santander</Value>
     </Setting>
-    <Setting Name="KeePass_Entry_Uuid_Santander" Type="System.String" Scope="User">
+    <Setting Name="KeePassEntryUuidSantander" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DataDownloader_Subfolder_Dkb" Type="System.String" Scope="User">
+    <Setting Name="DataDownloaderSubfolderDkb" Type="System.String" Scope="User">
       <Value Profile="(Default)">DKB</Value>
     </Setting>
-    <Setting Name="KeePass_Entry_Uuid_Dkb" Type="System.String" Scope="User">
+    <Setting Name="KeePassEntryUuidDkb" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DataDownloader_Subfolder_Number26" Type="System.String" Scope="User">
+    <Setting Name="DataDownloaderSubfolderNumber26" Type="System.String" Scope="User">
       <Value Profile="(Default)">Number26</Value>
     </Setting>
-    <Setting Name="KeePass_Entry_Uuid_Number26" Type="System.String" Scope="User">
+    <Setting Name="KeePassEntryUuidNumber26" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="KeePass_Field_Pin_Raiffeisen" Type="System.String" Scope="User">
+    <Setting Name="KeePassFieldPinRaiffeisen" Type="System.String" Scope="User">
       <Value Profile="(Default)">PIN</Value>
     </Setting>
-    <Setting Name="KeePass_Field_Birthday_Santander" Type="System.String" Scope="User">
+    <Setting Name="KeePassFieldBirthdaySantander" Type="System.String" Scope="User">
       <Value Profile="(Default)">birthday</Value>
     </Setting>
-    <Setting Name="KeePass_Entry_Uuid_Rci" Type="System.String" Scope="User">
+    <Setting Name="KeePassEntryUuidRci" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DataDownloader_Subfolder_Rci" Type="System.String" Scope="User">
+    <Setting Name="DataDownloaderSubfolderRci" Type="System.String" Scope="User">
       <Value Profile="(Default)">RenaultBank</Value>
+    </Setting>
+    <Setting Name="DataDownloaderRunDefaultRaiffeisen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="DataDownloaderRunDefaultSantander" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="DataDownloaderRunDefaultDkb" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="DataDownloaderRunDefaultNumber26" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="DataDownloaderRunDefaultRci" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="LanguageIso639_1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
     </Setting>
   </Settings>
 </SettingsFile>

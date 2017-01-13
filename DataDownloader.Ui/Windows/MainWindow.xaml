@@ -1,0 +1,55 @@
+﻿<Window x:Class="DataDownloader.Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
+        xmlns:controls="clr-namespace:DataDownloader.Ui.Controls"
+        Title="{x:Static resx:Ui.MainWindow_Title}" MaxWidth="600" MaxHeight="400" SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize" FocusManager.FocusedElement="{Binding ElementName=PasswordBoxKeePassMasterPassword}">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" TabIndex="1">
+            <MenuItem Header="{x:Static resx:Ui.Main_Settings_Menu}">
+                <Separator />
+                <MenuItem x:Name="MenuItemSettings" Header="{x:Static resx:Ui.Main_Settings_Menu}"
+                          Click="MenuItemSettings_Click" />
+            </MenuItem>
+            <MenuItem Header="{x:Static resx:Ui.Main_Help_Menu}">
+                <MenuItem Name="MenuItemAbout" Header="{x:Static resx:Ui.Main_About_Menu}" Click="MenuItemAbout_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel DockPanel.Dock="Bottom">
+            <ProgressBar Margin="{DynamicResource Margin}" Name="ProgressBar" Height="20" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <controls:IconButton IconSource="/icons/Downloads.png" Text="{x:Static resx:Ui.Common_StartDownload}"
+                                     x:Name="ButtonStartDownload" Click="ButtonStartDownload_Click" />
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Style="{DynamicResource FormStack}" DockPanel.Dock="Top">
+                    <Label Content="{x:Static resx:Ui.Main_KeePassPassword_Label}" />
+                    <PasswordBox Name="PasswordBoxKeePassMasterPassword" KeyUp="PasswordBoxKeePassMasterPassword_KeyUp" />
+                </StackPanel>
+                <StackPanel Style="{DynamicResource FormStack}">
+                    <Label Content="{x:Static resx:Ui.Main_Banks_Label}" />
+                    <StackPanel>
+                        <StackPanel Style="{DynamicResource FormStack}">
+                            <CheckBox Name="CheckBoxRaiffeisen" Content="{x:Static resx:Ui.Bank_Raiffeisen}" />
+                        </StackPanel>
+                        <StackPanel Style="{DynamicResource FormStack}">
+                            <CheckBox Name="CheckBoxDkb" Content="{x:Static resx:Ui.Bank_Dkb}" />
+                        </StackPanel>
+                        <StackPanel Style="{DynamicResource FormStack}">
+                            <CheckBox Name="CheckBoxNumber26" Content="{x:Static resx:Ui.Bank_Number26}" />
+                        </StackPanel>
+                        <StackPanel Style="{DynamicResource FormStack}">
+                            <CheckBox Name="CheckBoxRci" Content="{x:Static resx:Ui.Bank_Rci}" />
+                        </StackPanel>
+                        <StackPanel Style="{DynamicResource FormStack}">
+                            <CheckBox Name="CheckBoxSantander" Content="{x:Static resx:Ui.Bank_Santander}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

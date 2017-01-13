@@ -64,7 +64,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DownloadHandlerTests\DownloadHandlerTest.cs" />
-    <Compile Include="Mock\TestSettingHandler.cs" />
+    <Compile Include="Mock\TestSettings.cs" />
     <Compile Include="OtherTests\TestSettingHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

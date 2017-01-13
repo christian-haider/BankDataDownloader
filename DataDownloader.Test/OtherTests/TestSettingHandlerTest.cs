@@ -13,7 +13,7 @@ namespace DataDownloader.Test.OtherTests
         [TestMethod]
         public void WriteTestSettingSkeleton()
         {
-            Console.WriteLine(JsonConvert.SerializeObject(new TestSettingHandler(), Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(new TestSettings(), Formatting.Indented));
         }
     }
 }

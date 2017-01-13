@@ -1,0 +1,208 @@
+﻿<Window x:Class="DataDownloader.Ui.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
+        xmlns:controls="clr-namespace:DataDownloader.Ui.Controls"
+        Width="550"
+        Height="400"
+        ResizeMode="NoResize"
+        Title="{x:Static resx:Ui.SettingsWindow_Title}">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+            <controls:IconButton IconSource="/icons/Ok.png" Text="{x:Static resx:Ui.Common_ApplySave}"
+                                 x:Name="ButtonApplySettings" Click="ButtonApplySettings_Click" />
+            <controls:IconButton IconSource="/icons/Save.png" Text="{x:Static resx:Ui.Common_SaveClose}"
+                                 x:Name="ButtonSaveSettings" Click="ButtonSaveSettings_Click" />
+        </StackPanel>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <controls:TabHeader IconSource="/icons/Settings.png"
+                                        Text="{x:Static resx:Ui.Settings_General_Header}" />
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <GroupBox Header="{x:Static resx:Ui.Settings_General_Header}">
+                            <StackPanel Orientation="Vertical">
+                                <Grid Style="{DynamicResource FormGrid}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label Content="{x:Static resx:Ui.Settings_Language_Label}" Grid.Row="0"
+                                           Grid.Column="0" />
+                                    <ComboBox Name="ComboBoxLanguage" ItemsSource="{Binding Languages}"
+                                              SelectedValuePath="Iso639_1" Grid.Row="0" Grid.Column="1">
+                                        <ComboBox.DataContext>
+                                            <resx:SupportedLanguages />
+                                        </ComboBox.DataContext>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Path=Iso639_1}" Width="30" />
+                                                    <TextBlock Text="{Binding Path=NativeName}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBlock Width="{DynamicResource FormContentWidth}" Grid.Row="1" Grid.Column="1"
+                                               Text="{x:Static resx:Ui.Settings_Language_Tooltip}"
+                                               Margin="{DynamicResource Margin}" Padding="{DynamicResource Padding}"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <controls:TabHeader IconSource="/icons/Keepass.png"
+                                        Text="{x:Static resx:Ui.Settings_KeePass_Header}" />
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <GroupBox Header="{x:Static resx:Ui.Settings_KeePass_Header}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassDatabasePath_Label}" />
+                                    <TextBox Name="TextBoxDatabasePath" Width="200" />
+                                    <Button Name="ButtonDatabasePath" Width="30" Click="ButtonDatabasePath_Click"
+                                            Padding="0" Margin="0">
+                                        ...
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <controls:TabHeader IconSource="/icons/Download From Cloud.png"
+                                        Text="{x:Static resx:Ui.Settings_DataDownloader_Header}" />
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <GroupBox Header="{x:Static resx:Ui.Settings_DataDownloader_Header}">
+                            <StackPanel>
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <Label>Download Path</Label>
+                                    <TextBox Name="TextBoxDownloadPath" Width="200" />
+                                    <Button Name="ButtonDownloadPath" Width="30" Click="ButtonDownloadPath_Click"
+                                            Padding="0" Margin="0">
+                                        ...
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <controls:TabHeader IconSource="/icons/Bank Euro.png"
+                                        Text="{x:Static resx:Ui.Settings_Bank_Header}" />
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <GroupBox Header="{x:Static resx:Ui.Bank_Raiffeisen}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderRunDefault_Label}" />
+                                    <CheckBox Name="CheckBoxRaiffeisenRunDefault" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderSubfolder_Label}" />
+                                    <TextBox Name="TextBoxRaiffeisenSubfolder" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassEntryUuid_Label}" />
+                                    <TextBox Name="TextBoxRaiffeisenUuid" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}"
+                                            ToolTip="{x:Static resx:Ui.Settings_KeePassFieldPin_Tooltip}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassFieldPin_Label}" />
+                                    <TextBox Name="TextBoxRaiffeisenPin" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{x:Static resx:Ui.Bank_Dkb}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderRunDefault_Label}" />
+                                    <CheckBox Name="CheckBoxDkbRunDefault" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderSubfolder_Label}" />
+                                    <TextBox Name="TextBoxDkbSubfolder" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassEntryUuid_Label}" />
+                                    <TextBox Name="TextBoxDkbUuid" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{x:Static resx:Ui.Bank_Number26}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderRunDefault_Label}" />
+                                    <CheckBox Name="CheckBoxNumber26RunDefault" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderSubfolder_Label}" />
+                                    <TextBox Name="TextBoxNumber26Subfolder" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassEntryUuid_Label}" />
+                                    <TextBox Name="TextBoxNumber26Uuid" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{x:Static resx:Ui.Bank_Rci}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderRunDefault_Label}" />
+                                    <CheckBox Name="CheckBoxRciRunDefault" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderSubfolder_Label}" />
+                                    <TextBox Name="TextBoxRciSubfolder" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassEntryUuid_Label}" />
+                                    <TextBox Name="TextBoxRciUuid" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{x:Static resx:Ui.Bank_Santander}">
+                            <StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderRunDefault_Label}" />
+                                    <CheckBox Name="CheckBoxSantanderRunDefault" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_DataDownloaderSubfolder_Label}" />
+                                    <TextBox Name="TextBoxSantanderSubfolder" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassEntryUuid_Label}" />
+                                    <TextBox Name="TextBoxSantanderUuid" />
+                                </StackPanel>
+                                <StackPanel Style="{DynamicResource FormStack}"
+                                            ToolTip="{x:Static resx:Ui.Settings_KeePassFieldBirthday_Tooltip}">
+                                    <Label Content="{x:Static resx:Ui.Settings_KeePassFieldBirthday_Label}" />
+                                    <TextBox Name="TextBoxSantanderBirthday" />
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Mime;
 using System.Security;
 using DataDownloader.Common.Helper;
-using DataDownloader.Common.Settings;
+using DataDownloader.Common.Properties;
 using DataDownloader.Handler.Selenium;
 using KeePass;
 using NLog;
@@ -55,8 +55,7 @@ namespace DataDownloader.Handler.BankDownloadHandler
             {
                 Directory.CreateDirectory(DownloadPath);
             }
-
-            KeePass = KeePassWrapper.OpenWithPassword(SettingHandler.Default.KeePassPath, KeePassMasterPassword);
+            KeePass = KeePassWrapper.OpenWithPassword(SettingsHandler.Instance.KeePassPath, KeePassMasterPassword);
 
             var options = new ChromeOptions();
             options.AddUserProfilePreference("download.default_directory", DownloadPath);

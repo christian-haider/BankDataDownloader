@@ -2,7 +2,6 @@
 using System.Security;
 using System.Threading;
 using DataDownloader.Common.Properties;
-using DataDownloader.Common.Settings;
 using KeePass;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -12,17 +11,17 @@ namespace DataDownloader.Handler.BankDownloadHandler
 {
     public class SantanderDownloadHandler : BankDownloadHandlerBase
     {
-        public SantanderDownloadHandler(string password) : base(password, "https://service.santanderconsumer.at/eva/", Path.Combine(SettingHandler.Default.DataDownloaderPath, SettingHandler.Default.DataDownloaderSubfolderSantander))
+        public SantanderDownloadHandler(string password) : base(password, "https://service.santanderconsumer.at/eva/", Path.Combine(SettingsHandler.Instance.DataDownloaderPath, SettingsHandler.Instance.DataDownloaderSubfolderSantander))
         {
         }
 
-        public SantanderDownloadHandler(SecureString password) : base(password, "https://service.santanderconsumer.at/eva/", Path.Combine(SettingHandler.Default.DataDownloaderPath, SettingHandler.Default.DataDownloaderSubfolderSantander))
+        public SantanderDownloadHandler(SecureString password) : base(password, "https://service.santanderconsumer.at/eva/", Path.Combine(SettingsHandler.Instance.DataDownloaderPath, SettingsHandler.Instance.DataDownloaderSubfolderSantander))
         {
         }
 
         protected override void Login()
         {
-            var entry = KeePass.GetEntryByUuid(SettingHandler.Default.KeePassEntryUuidSantander);
+            var entry = KeePass.GetEntryByUuid(SettingsHandler.Instance.KeePassEntryUuidSantander);
 
             Browser.FindElement(new ByChained(By.Id("eserviceLogin"), new ByIdOrName("disposerId"))).SendKeys(entry.GetUserName());
             Browser.FindElement(new ByChained(By.Id("eserviceLogin"), new ByIdOrName("birthdate"))).SendKeys(entry.GetString("birthday"));

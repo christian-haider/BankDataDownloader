@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using DataDownloader.Common.Settings;
+using DataDownloader.Common.Properties;
 using DataDownloader.Handler.BankDownloadHandler;
 using DataDownloader.Test.Mock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,26 +14,26 @@ namespace DataDownloader.Test.DownloadHandlerTests
     public abstract class DownloadHandlerTestBase<TDownloadHandler> where TDownloadHandler : BankDownloadHandlerBase
     {
         protected TDownloadHandler DownloadHandler;
-        protected TestSettingHandler TestSettingHandler;
+        protected TestSettings TestSettings;
 
         [TestInitialize]
         public void TestInitialize()
         {
             var name = "DataDownloader.Test.testsettings.json";
-            using (var stream = typeof(TestSettingHandler).Assembly.GetManifestResourceStream(name))
+            using (var stream = typeof(TestSettings).Assembly.GetManifestResourceStream(name))
             {
                 if (stream != null)
                 {
                     using (var sr = new StreamReader(stream, Encoding.Default))
                     {
-                        TestSettingHandler = JsonConvert.DeserializeObject<TestSettingHandler>(sr.ReadToEnd());
-                        SettingHandler.MockSettingHandler(TestSettingHandler);
+                        TestSettings = JsonConvert.DeserializeObject<TestSettings>(sr.ReadToEnd());
+                        SettingsHandler.RegisterSettingHandler(TestSettings);
                     }
                 }
             }
             var constructors = typeof(TDownloadHandler).GetConstructors();
             var constructor = constructors.Single(info => info.GetParameters().First().ParameterType == typeof(string));
-            DownloadHandler = (TDownloadHandler)constructor.Invoke(new object[] { TestSettingHandler.KeePassPassword });
+            DownloadHandler = (TDownloadHandler)constructor.Invoke(new object[] { TestSettings.KeePassPassword });
         }
 
         [TestMethod]

@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Linq;
-using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using DataDownloader.Common.Settings;
+using DataDownloader.Common.Properties;
 using DataDownloader.Handler.BankDownloadHandler;
+using DataDownloader.Ui.Windows;
 using KeePass;
 using NLog;
 
 namespace DataDownloader.Ui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -25,11 +24,7 @@ namespace DataDownloader.Ui
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void MenuItemSettings_Click(object sender, RoutedEventArgs e)
-        {
-            new SettingWindow().ShowDialog();
+            InitWindowWithSettings();
         }
 
         private void ButtonStartDownload_Click(object sender, RoutedEventArgs e)
@@ -37,7 +32,22 @@ namespace DataDownloader.Ui
             Run();
         }
 
-        private void PasswordBoxKeePassMasterPassword_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void InitWindowWithSettings()
+        {
+            CheckBoxRci.IsChecked = SettingsHandler.Instance.DataDownloaderRunDefaultRci;
+            CheckBoxDkb.IsChecked = SettingsHandler.Instance.DataDownloaderRunDefaultDkb;
+            CheckBoxNumber26.IsChecked = SettingsHandler.Instance.DataDownloaderRunDefaultNumber26;
+            CheckBoxRaiffeisen.IsChecked = SettingsHandler.Instance.DataDownloaderRunDefaultRaiffeisen;
+            CheckBoxSantander.IsChecked = SettingsHandler.Instance.DataDownloaderRunDefaultSantander;
+        }
+
+        private void MenuItemSettings_Click(object sender, RoutedEventArgs e)
+        {
+            new SettingsWindow().ShowDialog();
+            InitWindowWithSettings();
+        }
+
+        private void PasswordBoxKeePassMasterPassword_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -52,7 +62,7 @@ namespace DataDownloader.Ui
             var password = PasswordBoxKeePassMasterPassword.SecurePassword;
             try
             {
-                using (KeePassWrapper.OpenWithPassword(SettingHandler.Default.KeePassPath, password))
+                using (KeePassWrapper.OpenWithPassword(SettingsHandler.Instance.KeePassPath, password))
                 {
                 }
 
@@ -85,7 +95,8 @@ namespace DataDownloader.Ui
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Check password:\n{ex.Message}", "KeePass error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Check password:\n{ex.Message}", "KeePass error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -122,7 +133,7 @@ namespace DataDownloader.Ui
             }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, context);
             task.ContinueWith(t =>
             {
-                AggregateException aggregateException = t.Exception;
+                var aggregateException = t.Exception;
                 aggregateException?.Handle(exception => true);
                 var msg =
                     $"Error occured while downloading data via {downloadHandler.GetType().Name}: {aggregateException?.InnerExceptions.Select(exception => exception.Message).Aggregate("", (head, current) => $"{head}\n{current}")}";
@@ -137,6 +148,12 @@ namespace DataDownloader.Ui
 
             task.Start();
         }
+
         #endregion
+
+        private void MenuItemAbout_Click(object sender, RoutedEventArgs e)
+        {
+            new AboutWindow().ShowDialog();
+        }
     }
 }
