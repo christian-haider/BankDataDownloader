@@ -25,11 +25,10 @@
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>true</UpdatePeriodically>
+    <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/haidelber/BankDataDownloader/publish/publish/</InstallUrl>
-    <UpdateUrl>https://github.com/haidelber/BankDataDownloader/issues/</UpdateUrl>
     <SupportUrl>https://github.com/haidelber/BankDataDownloader</SupportUrl>
     <ErrorReportUrl>https://github.com/haidelber/BankDataDownloader/issues</ErrorReportUrl>
     <ProductName>Bank Data Downloader</ProductName>
