@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using DataDownloader.Common.Properties;
 
-namespace DataDownloader.Ui
+namespace DataDownloader.Ui.Windows
 {
     /// <summary>
     ///     Interaction logic for SettingsWindow.xaml

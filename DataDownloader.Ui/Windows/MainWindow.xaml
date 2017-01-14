@@ -1,4 +1,4 @@
-﻿<Window x:Class="DataDownloader.Ui.MainWindow"
+﻿<Window x:Class="DataDownloader.Ui.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
@@ -8,18 +8,28 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" TabIndex="1">
             <MenuItem Header="{x:Static resx:Ui.Main_Settings_Menu}">
-                <Separator />
                 <MenuItem x:Name="MenuItemSettings" Header="{x:Static resx:Ui.Main_Settings_Menu}"
-                          Click="MenuItemSettings_Click" />
+                          Click="MenuItemSettings_Click" >
+                    <MenuItem.Icon><Image Source="/icons/Settings.png"></Image></MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="{x:Static resx:Ui.Main_Help_Menu}">
-                <MenuItem Name="MenuItemAbout" Header="{x:Static resx:Ui.Main_About_Menu}" Click="MenuItemAbout_Click"></MenuItem>
+                <MenuItem Name="MenuItemLogs" Header="{x:Static resx:Ui.Main_Logs_Menu}" Click="MenuItemLogs_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="/icons/Document.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="MenuItemAbout" Header="{x:Static resx:Ui.Main_About_Menu}" Click="MenuItemAbout_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="/icons/Info.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Bottom">
             <ProgressBar Margin="{DynamicResource Margin}" Name="ProgressBar" Height="20" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <controls:IconButton IconSource="/icons/Multiple Inputs_64.png" Text="{x:Static resx:Ui.Common_StartDownload}"
+                <controls:IconButton IconSource="/icons/Multiple Inputs.png" Text="{x:Static resx:Ui.Common_StartDownload}"
                                      x:Name="ButtonStartDownload" Click="ButtonStartDownload_Click" />
             </StackPanel>
         </StackPanel>

@@ -171,6 +171,9 @@
   <data name="Main_KeePassPassword_Label" xml:space="preserve">
     <value>KeePass Master-Password</value>
   </data>
+  <data name="Main_Logs_Menu" xml:space="preserve">
+    <value>Logs</value>
+  </data>
   <data name="Main_Settings_Menu" xml:space="preserve">
     <value>Settings</value>
   </data>

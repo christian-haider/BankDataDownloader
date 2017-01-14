@@ -1,4 +1,4 @@
-﻿<Window x:Class="DataDownloader.Ui.SettingsWindow"
+﻿<Window x:Class="DataDownloader.Ui.Windows.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:resx="clr-namespace:DataDownloader.Common.Resources;assembly=DataDownloader.Common"
