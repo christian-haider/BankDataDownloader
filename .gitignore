@@ -136,7 +136,9 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Click-Once directory
-publish/
+**/publish/*
+# Allow only this one publish folder
+!/publish/*
 
 # Publish Web Output
 *.[Pp]ublish.xml

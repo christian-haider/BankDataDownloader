@@ -1,0 +1,4 @@
+!*.exe
+!*.deploy
+!*.manifest
+!*.html
