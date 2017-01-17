@@ -7,7 +7,8 @@
         Title="{x:Static resx:Ui.AboutWindow_Title}" Height="400" Width="400" Icon="/Bank Data Downloader;component/icons/DataDownloader.png"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <system:Double x:Key="H1Size" >16</system:Double>
-        <system:Double x:Key="H2Size" >12</system:Double>
+        <system:Double x:Key="H2Size" >14</system:Double>
+        <system:Double x:Key="H3Size" >12</system:Double>
         <Style TargetType="FlowDocument">
             <Setter Property="FontFamily" Value="Segoe UI"></Setter>
             <Setter Property="FontSize" Value="12"></Setter>
@@ -20,7 +21,6 @@
         <Style TargetType="TextElement" x:Key="H2">
             <Setter Property="FontSize" Value="{DynamicResource H2Size}"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
-            <Setter Property="Foreground" Value="DarkGray"></Setter>
         </Style>
         <Style TargetType="Hyperlink">
             <EventSetter Event="RequestNavigate" Handler="Hyperlink_RequestNavigate"></EventSetter>
@@ -31,12 +31,21 @@
             <Image Source="/icons/DataDownloader.png" Stretch="None" DockPanel.Dock="Left" VerticalAlignment="Top"></Image>
             <FlowDocumentScrollViewer Margin="{DynamicResource Margin}" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
                 <FlowDocument>
-                    <Paragraph Style="{DynamicResource H1}" >
-                        <Run Text="{Binding Product, Mode=OneWay}"></Run><LineBreak />
-                        <Run Text="{Binding Version, Mode=OneWay}" Style="{DynamicResource H2}"></Run>
+                    <Paragraph >
+                        <Run Text="{Binding Product, Mode=OneWay}" Style="{DynamicResource H1}"></Run>
+                        <LineBreak />
+                        <Run Text="{Binding DeploymentVersion, Mode=OneWay}" Style="{DynamicResource H2}"></Run>
+                        <LineBreak />
+                        <Span>
+                            <Run Text="{x:Static resx:Ui.About_BuildVersion_Text}"></Run>
+                            <Run></Run>
+                            <Run Text="{Binding ProductVersion, Mode=OneWay}"></Run>
+                        </Span>
                     </Paragraph>
                     <Paragraph>
-                        <Hyperlink NavigateUri="https://github.com/haidelber/BankDataDownloader"><Run Text="{x:Static resx:Ui.About_ProjectWebsite_Text}"></Run></Hyperlink>
+                        <Hyperlink NavigateUri="https://github.com/haidelber/BankDataDownloader">
+                            <Run Text="{x:Static resx:Ui.About_ProjectWebsite_Text}"></Run>
+                        </Hyperlink>
                     </Paragraph>
                     <Paragraph FontWeight="Bold" >
                         <Run Text="{Binding Copyright, Mode=OneWay}"></Run>

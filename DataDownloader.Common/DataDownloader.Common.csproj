@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Model\N26TransactionEntry.cs" />
+    <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -113,6 +114,7 @@
     <EmbeddedResource Include="Resources\Ui.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Ui.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -87,6 +87,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DataDownloader.Common\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BankDownloadHandler\BankDownloadHandlerBase.cs" />
     <Compile Include="BankDownloadHandler\DkbDownloadHandler.cs" />
     <Compile Include="BankDownloadHandler\Number26DownloadHandler.cs" />

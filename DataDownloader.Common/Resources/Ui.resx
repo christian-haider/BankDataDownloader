@@ -126,6 +126,9 @@
   <data name="About_CodeLibAcknowledgements_Text" xml:space="preserve">
     <value>Code/Library Acknowledgements</value>
   </data>
+  <data name="About_BuildVersion_Text" xml:space="preserve">
+    <value>Build version</value>
+  </data>
   <data name="About_IconAcknowledgements_Text" xml:space="preserve">
     <value>Icon Acknowledgements</value>
   </data>

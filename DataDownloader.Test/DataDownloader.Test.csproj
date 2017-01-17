@@ -63,6 +63,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\DataDownloader.Common\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DownloadHandlerTests\DownloadHandlerTest.cs" />
     <Compile Include="Mock\TestSettings.cs" />
     <Compile Include="OtherTests\TestSettingHandlerTest.cs" />

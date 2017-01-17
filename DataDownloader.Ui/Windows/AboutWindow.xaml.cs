@@ -29,10 +29,9 @@ namespace DataDownloader.Ui.Windows
             InitializeComponent();
         }
 
-        public string ProductVersion { get; set; } = "1.0.0.0";
+        public string ProductVersion { get; set; }
         public string AssemblyVersion { get; set; }
         public string DeploymentVersion { get; set; }
-        public string Version => DeploymentVersion ?? ProductVersion ?? AssemblyVersion;
         public string Copyright { get; set; }
         public string Product { get; set; }
         public string Description { get; set; }

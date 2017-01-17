@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Bank Data Downloader.exe" version="1.0.0.0" publicKeyToken="de5c8275044e18a3" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="icons\DataDownloader.ico" asmv2:publisher="Stefan Haider" asmv2:product="Bank Data Downloader" asmv2:supportUrl="https://github.com/haidelber/BankDataDownloader" co.v1:errorReportUrl="https://github.com/haidelber/BankDataDownloader/issues" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Bank Data Downloader" version="1.0.6227.1217" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Bank Data Downloader.exe" parameters="" />
+  </entryPoint>
+  <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bank Data Downloader.exe" size="123816">
+      <assemblyIdentity name="Bank Data Downloader" version="1.0.6227.1217" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>JMOzQk8fRPIIDc+O0IJmEHgqwKB3rPOA06odDY+pjFk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CsvHelper.dll" size="78848">
+      <assemblyIdentity name="CsvHelper" version="2.0.0.0" publicKeyToken="8C4959082BE5C823" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>c2DlXRRkeEX3WgVZeLPfIdOYikKGG9gr9+n63B+CBD0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDownloader.Common.dll" size="50688">
+      <assemblyIdentity name="DataDownloader.Common" version="1.0.6227.1216" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>lowDuA5MoxaLvaCl6sW19w1bC16hHED3gBllTU5mXv0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="de\DataDownloader.Common.resources.dll" size="4096">
+      <assemblyIdentity name="DataDownloader.Common.resources" version="1.0.6227.1216" language="de" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xqJW4lK6fV7ZL5wlXvRi1NBmDjH4thA8xWajneKSpac=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDownloader.Handler.dll" size="28672">
+      <assemblyIdentity name="DataDownloader.Handler" version="1.0.6227.1216" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1QKPfLfZkYlQqs+QedT65DhqWO2AWPKBrF8dAKMz3Uk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeePass.dll" size="7168">
+      <assemblyIdentity name="KeePass" version="1.0.6227.1216" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>F5AeMSfNNBUe3JPawFTQsJJXe7xMdEvuHA69XlH1d3s=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeePassLib.dll" size="252312">
+      <assemblyIdentity name="KeePassLib" version="2.30.0.15901" publicKeyToken="A47AF649847D8CE7" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>TCv868oOkF8Uoai7ca59HH6upQjJHDuoC+dMPW2JPuA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NLog.dll" size="579072">
+      <assemblyIdentity name="NLog" version="4.0.0.0" publicKeyToken="5120E14C03D0593C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>YByqtVzEWiB0CHHGxDpJWJJJYZMrL3jthChb0jrkXHo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WebDriver.dll" size="1602560">
+      <assemblyIdentity name="WebDriver" version="3.0.1.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>SlAFXs81XtmXmGpjezYwnOSDAncJElXhAAt7U5omylU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WebDriver.Support.dll" size="56832">
+      <assemblyIdentity name="WebDriver.Support" version="3.0.1.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>WVZ+jG75y6kv1BvRkhSPpR8bqdTRcPDuWELc5WKmtts=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="chromedriver.exe" size="7477760">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>nHXa4ZWkdeqqgBCC+z2YnEhZxAmCsuthJlXqDeJoCWo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="icons\DataDownloader.ico" size="32038">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1mr9dUdJ9b87FS7/kdGp0ctU/w/H4lj7/ofTXNjIR2Y=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="NLog.config" size="1262">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YUgYUEVHyE0Pszw5RA49Uv+qlzIC33FuYXHmoBBLgqA=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=HAIPC\stefa" issuerKeyHash="5f16f794e6e46228d74fc937e3e5c6e51f833c23" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>988WBFujSXNg1FDQLVDrrGczEXefCHAynCA2AjrPf8w=</DigestValue></Reference></SignedInfo><SignatureValue>jm8JsYB66+Sa2bktjviT37MG4NXdk5aL2kOxfs6oyumP9MbmAIUoEuwdDL4G/3LQEMNur4tlf/GAo0W/ygr6bFEXLMQQGdxpUBXkVtFFjB0wOnoCLkKwTB4TY6WfUv7VCJrjLhs38JA8M139ZHGLk2U4v1YPVqR/uxhORlNes8I=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>j7wr40D1RnotCKIs4u4vzafjIuSjztDjobP3iV0iMZsORZvnafK6DqNxOLpmnS03RyaN+hFLGv11dY6ErDwlenyNcvJwm1ogok8xpLSUdnTo2qRqIpvG0oYSJ9FxJkSQT1z4Us3nxjJizU6thFp3frbLw4M4lzeIM7E4Ohe+SBk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="cc7fcf3a0236209c3270089f77113367aceb502dd050d4607349a35b0416cff7" Description="" Url=""><as:assemblyIdentity name="Bank Data Downloader.exe" version="1.0.0.0" publicKeyToken="de5c8275044e18a3" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=HAIPC\stefa</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>nImkbPnxSoN0p2z6knZBFAxEUP4VdMhJRLO9PH7NnEE=</DigestValue></Reference></SignedInfo><SignatureValue>BkBdUMRnPn5NjUY8Tc8CX4moUnH2cyIMeiUA6fe7j71XJVAmKIBbkLxKiAR/ZDj9XT8O4LIi9tZFDGdCC82ioWLMYFKe2aiuvB9v+R0+UG1jDkBfoxD4ZzFVhwtGDN5tjxT4CzMeyWIVaMSevb6JRGy0PcfjPurxZ04yGZECdpw=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>j7wr40D1RnotCKIs4u4vzafjIuSjztDjobP3iV0iMZsORZvnafK6DqNxOLpmnS03RyaN+hFLGv11dY6ErDwlenyNcvJwm1ogok8xpLSUdnTo2qRqIpvG0oYSJ9FxJkSQT1z4Us3nxjJizU6thFp3frbLw4M4lzeIM7E4Ohe+SBk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBxTCCAS6gAwIBAgIQXCEqpo+I3odLFbsb9t0urjANBgkqhkiG9w0BAQsFADAhMR8wHQYDVQQDHhYASABBAEkAUABDAFwAcwB0AGUAZgBhMB4XDTE2MDYwMzExNDEyNFoXDTE3MDYwMzE3NDEyNFowITEfMB0GA1UEAx4WAEgAQQBJAFAAQwBcAHMAdABlAGYAYTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAj7wr40D1RnotCKIs4u4vzafjIuSjztDjobP3iV0iMZsORZvnafK6DqNxOLpmnS03RyaN+hFLGv11dY6ErDwlenyNcvJwm1ogok8xpLSUdnTo2qRqIpvG0oYSJ9FxJkSQT1z4Us3nxjJizU6thFp3frbLw4M4lzeIM7E4Ohe+SBkCAwEAATANBgkqhkiG9w0BAQsFAAOBgQA9tWGyC7TaFgq5Ked1t7HatlecuJvUhUjqeTxfw5DVaZ5nQfOwfoqhjuBs4c339fGzZ2YZOjEJECbuw1LHGfleKL/lTfWz+mfY7OCQDbSp47PP39AMjpVenzMhMekhgrltgEtm5Ov2W3zGiSU1JRgGKjVuaI6p52o2fkLaNzscuw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
