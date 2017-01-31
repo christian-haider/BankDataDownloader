@@ -67,29 +67,25 @@ namespace DataDownloader.Handler.BankDownloadHandler
         {
             Browser.FindElement(new ByAll(By.TagName("button"), By.ClassName("activities"))).Click();
             Browser.WaitForJavaScript();
-
             Screenshot ss = ((ITakesScreenshot)Browser).GetScreenshot();
             ss.SaveAsFile(Path.Combine(DownloadPath, "transactions.png"), System.Drawing.Imaging.ImageFormat.Png);
 
-            var entries =
-                Browser.ExecuteJavaScript<object>(
-                    "var array_values = new Array();for (var key in Backbone.activities_.attributes) { array_values.push(Backbone.activities_.attributes[key]); } return array_values;");
-            var values =
-                ((IEnumerable)entries).Cast<Dictionary<string, object>>()
-                    .Where(objects => objects.Count > 0)
-                    .Select(objects => new N26TransactionEntry(objects))
-                    .OrderBy(entry => entry.Valuta)
-                    .ThenBy(entry => entry.Confirmed)
-                    .ThenBy(entry => entry.VisibleTS)
-                    .ToList();
-            using (var stringWriter = new StringWriter())
+            //Click download button
+            Browser.FindElement(By.ClassName("csv")).Click();
+            Browser.WaitForJavaScript();
+            //Click previous a few times
+            Browser.FindElement(By.ClassName("ui-datepicker-today")).Click();
+            Browser.WaitForJavaScript(100);
+            for (int i = 0; i < 12; i++)
             {
-                using (var csvWriter = new CsvWriter(stringWriter, new CsvConfiguration() { Delimiter = ";" }))
-                {
-                    csvWriter.WriteRecords(values);
-                    FileDownloader.WriteFile("transactions.csv", stringWriter.ToString());
-                }
+                Browser.FindElement(By.ClassName("ui-datepicker-prev")).Click();
+                Browser.WaitForJavaScript(100);
             }
+            //Click first day of month
+            Browser.FindElement(new ByChained(By.ClassName("ui-datepicker-calendar"), By.XPath("//*[@data-handler='selectDay']"))).Click();
+            //Click download
+            Browser.FindElement(By.ClassName("ok")).Click();
+            Browser.WaitForJavaScript();
         }
 
         private List<IWebElement> GetSeparators()
